@@ -88,33 +88,56 @@ export default async function DownloadsPage() {
         {files.length === 0 ? (
           <p className="text-gray-300">No public files were found in the `public` or `public/downloads` directories.</p>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full table-auto text-left">
-              <thead>
-                <tr className="text-sm text-gray-400">
-                  <th className="px-3 py-2">File</th>
-                  <th className="px-3 py-2">Size</th>
-                  <th className="px-3 py-2">Last updated</th>
-                </tr>
-              </thead>
-              <tbody>
+          <>
+            {/* Desktop/tablet: show table on md+ */}
+            <div className="hidden md:block md:overflow-x-auto">
+              <table className="w-full table-auto text-left">
+                <thead>
+                  <tr className="text-sm text-gray-400">
+                    <th className="px-3 py-2">File</th>
+                    <th className="px-3 py-2">Size</th>
+                    <th className="px-3 py-2">Last updated</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {files.map((f) => {
+                    const displayName = f.name.includes('/') ? f.name.split('/').pop()! : f.name
+                    return (
+                      <tr key={f.href} className="border-t border-white/5">
+                        <td className="px-3 py-3">
+                          <a href={f.href} className="text-indigo-300 hover:underline" target="_blank" rel="noreferrer">
+                            {displayName}
+                          </a>
+                        </td>
+                        <td className="px-3 py-3 text-sm text-gray-300">{formatBytes(f.size)}</td>
+                        <td className="px-3 py-3 text-sm text-gray-300">{formatDate(f.mtimeMs)}</td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile: stacked cards that fit the viewport without horizontal scroll */}
+            <div className="md:hidden">
+              <ul className="space-y-3">
                 {files.map((f) => {
                   const displayName = f.name.includes('/') ? f.name.split('/').pop()! : f.name
                   return (
-                    <tr key={f.href} className="border-t border-white/5">
-                      <td className="px-3 py-3">
-                        <a href={f.href} className="text-indigo-300 hover:underline" target="_blank" rel="noreferrer">
-                          {displayName}
-                        </a>
-                      </td>
-                      <td className="px-3 py-3 text-sm text-gray-300">{formatBytes(f.size)}</td>
-                      <td className="px-3 py-3 text-sm text-gray-300">{formatDate(f.mtimeMs)}</td>
-                    </tr>
+                    <li key={f.href} className="border border-white/5 rounded-lg p-3 bg-transparent">
+                      <a href={f.href} className="flex items-center justify-between gap-3" target="_blank" rel="noreferrer">
+                        <div className="flex-1 min-w-0">
+                          <div className="text-indigo-300 font-medium truncate break-words">{displayName}</div>
+                          <div className="text-xs text-gray-400 mt-1">{formatDate(f.mtimeMs)}</div>
+                        </div>
+                        <div className="ml-3 text-sm text-gray-300">{formatBytes(f.size)}</div>
+                      </a>
+                    </li>
                   )
                 })}
-              </tbody>
-            </table>
-          </div>
+              </ul>
+            </div>
+          </>
         )}
       </section>
     </main>
