@@ -1,6 +1,7 @@
 import React from 'react'
 import Hero from './Hero'
 import ProfileCard from './ProfileCard'
+import MapCard from './MapCard'
 import FeaturedProjects from './FeaturedProjects'
 import SkillsGrid from './SkillsGrid'
 import ExperienceEducation from './ExperienceEducation'
@@ -15,8 +16,9 @@ export default function Home() {
             <SkillsGrid />
           </div>
 
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-end">
             <ProfileCard />
+            <MapCard />
           </div>
         </div>
 

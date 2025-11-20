@@ -3,8 +3,10 @@ import React from 'react'
 
 export default function FeaturedProjects() {
   return (
-    <section className="mt-20">
-      <h2 className="text-2xl font-semibold mb-6">Highlighted projects</h2>
+    <>
+      <hr className="border-t border-gray-700 my-8" />
+      <section className="mt-6">
+        <h2 className="text-2xl font-semibold mb-6">Highlighted projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <article className="p-5 card-gradient rounded-lg">
           <Link href="/projects/fisherai" className="block">
@@ -30,6 +32,8 @@ export default function FeaturedProjects() {
           </Link>
         </article>
       </div>
-    </section>
+      </section>
+      <hr className="border-t border-gray-700 my-8" />
+    </>
   )
 }

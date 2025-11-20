@@ -1,6 +1,8 @@
+"use client"
+
 import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
+import MapClient from './MapClient'
 
 export default function ProfileCard() {
   return (
@@ -27,6 +29,8 @@ export default function ProfileCard() {
           </a>
         </div>
       </div>
+
+      
     </div>
   )
 }

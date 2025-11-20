@@ -20,6 +20,8 @@ export default function ExperienceEducation() {
         </div>
       </section>
 
+      <hr className="border-t border-gray-700 my-8" />
+
       <section className="mt-12">
         <h2 className="text-2xl font-semibold mb-6">Education</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
