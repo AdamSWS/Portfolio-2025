@@ -1,15 +1,11 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "../components/Nav/Nav";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata = {
@@ -24,7 +20,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased site-gradient`}>
+      <head>
+        {/* Preconnect fonts to help early font fetches (next/font still manages font files) */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Inline minimal critical CSS for the hero LCP paragraph to avoid waiting for full CSS */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          .lcp-critical { font-size: 1.5rem; color: #e6eef8; max-width: 48rem; margin-bottom: 1.5rem; }
+        ` }} />
+      </head>
+      <body className={`${inter.variable} antialiased site-gradient`}>
         <div className="min-h-screen flex flex-col">
           <Nav />
           <main className="flex-1 overflow-auto">{children}</main>

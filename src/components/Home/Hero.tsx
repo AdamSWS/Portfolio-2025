@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export default function Hero() {
@@ -6,9 +7,9 @@ export default function Hero() {
     <div>
       <p className="text-sm text-gray-400 mb-4">MS Computer Science · ML Engineer</p>
       <h1 className="text-5xl sm:text-6xl font-semibold leading-tight mb-4">Hi — I&apos;m Adam.</h1>
-      <p className="text-2xl text-gray-200 max-w-3xl mb-6">I design and ship production-ready ML systems and developer tools that reduce time-to-deploy and improve product outcomes.</p>
+      <p className="lcp-critical text-2xl text-gray-200 max-w-3xl mb-6">I design and ship production-ready ML systems and developer tools that make models reliable, low-cost, and easy to integrate.</p>
 
-      <p className="text-gray-300 max-w-3xl mb-6 text-lg sm:text-xl leading-relaxed">I build dependable, deployable, and scalable AI models — from prototype to production. I help product teams integrate models into features, optimize inference, and maintain reliable pipelines.</p>
+      <p className="text-gray-300 max-w-3xl mb-6 text-lg sm:text-xl leading-relaxed">I help product teams move models from prototype to production by optimizing inference, automating data workflows, and embedding AI into existing pipelines.</p>
 
       <div className="flex flex-wrap items-center gap-3 mb-6">
         <span className="text-xs px-3 py-1 bg-gray-800 rounded text-gray-200">Deployed models: 10+</span>
@@ -18,7 +19,7 @@ export default function Hero() {
 
       <div className="mt-8">
         <h3 className="text-sm text-gray-400 mb-3">About</h3>
-        <p className="text-gray-300 max-w-3xl mb-4">I design and implement scalable inference pipelines, embed models into product features, and automate data workflows. Recent work includes automated document processing, causal analysis for relevance, and prototype-to-prod model shipping.</p>
+        <p className="text-gray-300 max-w-3xl mb-4">I am a Software Engineer from Chicago, IL with a love for integrating AI in cheap, practical ways in existing pipelines. Currently interested in doing some research and personal projects and very open to collaboration. <Link href="/contact" className="text-blue-300 hover:underline">Contact</Link></p>
       </div>
     </div>
   )

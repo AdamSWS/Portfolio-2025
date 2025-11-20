@@ -1,7 +1,12 @@
 "use client"
 
 import React from 'react'
-import MapClient from './MapClient'
+import dynamic from 'next/dynamic'
+
+const MapClient = dynamic(() => import('./MapClient'), {
+  ssr: false,
+  loading: () => <div className="mx-auto map-placeholder bg-gray-800 rounded" />,
+})
 
 export default function MapCard() {
   return (

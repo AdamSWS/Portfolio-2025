@@ -15,7 +15,7 @@ export default function Nav() {
   return (
     <nav className="w-full bg-[#0b0e12]/90 backdrop-blur-sm border-b border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-3 flex items-center justify-between">
-        <Link href="/" className="text-lg font-semibold text-gray-100">AdamSWS</Link>
+        <Link href="/" className="text-lg font-semibold text-gray-100">ashaar.me</Link>
 
         <div className="flex items-center gap-4">
           <Link href="/" className={`${base} ${isActive('/') ? 'text-white' : ''} relative`} aria-current={isActive('/') ? 'page' : undefined}>
