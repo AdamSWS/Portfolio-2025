@@ -44,57 +44,55 @@ export default async function ProjectsPage() {
 
   const filtered = repos
     .filter((r) => !r.archived && !r.fork)
-    .sort((a, b) => b.stargazers_count - a.stargazers_count)
+    // Sort by most recently updated first
+    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
 
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12">
-      <header className="mb-8 flex items-center justify-between">
+    <main className="max-w-7xl mx-auto px-6 py-12">
+      <header className="mb-8">
         <div>
           <h1 className="text-3xl font-bold mb-2">Projects</h1>
           <p className="text-gray-600">Automatically surfaced from your public GitHub repos.</p>
-        </div>
-        <div>
-          <Link href="/" className="text-sm bg-gray-100 px-3 py-1 rounded hover:bg-gray-200">Home</Link>
         </div>
       </header>
 
       {filtered.length === 0 ? (
         <p className="text-gray-500">No public repositories found or GitHub API rate-limited.</p>
       ) : (
-        <section className="grid gap-6 grid-cols-1 sm:grid-cols-2">
+        <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
           {filtered.map((repo) => {
             const slug = LOCAL_PROJECT_SLUGS[repo.name.toLowerCase()]
             return (
-              <article key={repo.id} className="rounded-lg p-4 hover:shadow-md transition-shadow card-gradient">
-                <div className="flex items-start justify-between">
+              <article key={repo.id} className="relative rounded-2xl p-6 hover:shadow-lg transition-shadow card-gradient flex flex-col justify-between h-full overflow-hidden">
+                {/* Full-card clickable area (keeps CTAs clickable via higher z-index) */}
+                <a href={repo.html_url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${repo.name} on GitHub`} className="absolute inset-0 z-0" />
+                <div className="relative z-10">
                   <div>
-                    <h3 className="text-lg font-semibold">
-                      <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                        {repo.name}
-                      </a>
-                    </h3>
-                    <p className="text-sm text-gray-700 mt-1">{repo.description ?? 'No description'}</p>
-                  </div>
-                  <div className="text-right text-sm text-gray-500">
-                    <div>{repo.language ?? ''}</div>
-                    <div>★ {repo.stargazers_count}</div>
+                    <div className="min-w-0">
+                      <h3 className="text-lg font-semibold">
+                        <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                          {repo.name}
+                        </a>
+                      </h3>
+                      {repo.description && repo.description.trim() ? (
+                        <p className="text-sm text-gray-300 mt-1 max-h-16 overflow-hidden">{repo.description}</p>
+                      ) : (
+                        <div className="text-sm text-gray-500 mt-1">{repo.language ?? ''}</div>
+                      )}
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {repo.topics && repo.topics.slice(0,4).map((t) => (
+                          <span key={t} className="text-xs bg-gray-800 px-2 py-1 rounded text-gray-200">{t}</span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between">
-                  <div className="text-xs text-gray-500">Updated {new Date(repo.updated_at).toLocaleDateString()}</div>
-                  <div className="flex items-center gap-3">
-                    <a
-                      href={repo.html_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm bg-gray-100 px-3 py-1 rounded hover:bg-gray-200"
-                      aria-label={`View ${repo.name} on GitHub`}
-                    >
-                      View code
-                    </a>
+                <div className="mt-6 flex items-center justify-between">
+                  <div className="text-xs text-gray-400">Updated {new Date(repo.updated_at).toLocaleDateString()}</div>
+                  <div className="flex items-center gap-3 z-10">
                     {slug ? (
-                      <Link href={slug} className="text-sm bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
+                      <Link href={slug} className="text-sm bg-gray-100 px-3 py-1 rounded hover:bg-gray-200 z-10">
                         Read case study
                       </Link>
                     ) : null}
@@ -105,7 +103,7 @@ export default async function ProjectsPage() {
           })}
         </section>
       )}
-      <footer className="mt-12 text-sm text-gray-500">Note: Private repos will not appear. To include private repos, set a server-side token (not stored in client code).</footer>
+      {/* Note removed: private repo visibility message intentionally hidden from UI */}
     </main>
   )
 }

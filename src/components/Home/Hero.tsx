@@ -5,16 +5,16 @@ import React from 'react'
 export default function Hero() {
   return (
     <div>
-      <p className="text-sm text-gray-400 mb-4">MS Computer Science · ML Engineer</p>
+      <p className="text-sm text-gray-400 mb-4">MS Computer Science · AI/ML Software Engineer</p>
       <h1 className="text-5xl sm:text-6xl font-semibold leading-tight mb-4">Hi — I&apos;m Adam.</h1>
       <p className="lcp-critical text-2xl text-gray-200 max-w-3xl mb-6">I design and ship production-ready ML systems and developer tools that make models reliable, low-cost, and easy to integrate.</p>
 
       <p className="text-gray-300 max-w-3xl mb-6 text-lg sm:text-xl leading-relaxed">I help product teams move models from prototype to production by optimizing inference, automating data workflows, and embedding AI into existing pipelines.</p>
 
       <div className="flex flex-wrap items-center gap-3 mb-6">
-        <span className="text-xs px-3 py-1 bg-gray-800 rounded text-gray-200">Deployed models: 10+</span>
-        <span className="text-xs px-3 py-1 bg-gray-800 rounded text-gray-200">Inference cost ↓ 40%</span>
-        <span className="text-xs px-3 py-1 bg-gray-800 rounded text-gray-200">Production ML · MLOps · APIs</span>
+        <span className="text-xs px-3 py-1 bg-gray-800 rounded text-gray-200">Deployed LIVE Models</span>
+        <span className="text-xs px-3 py-1 bg-gray-800 rounded text-gray-200">Developed LIVE Websites</span>
+        <span className="text-xs px-3 py-1 bg-gray-800 rounded text-gray-200">Open to Freelance Work</span>
       </div>
 
       <div className="mt-8">

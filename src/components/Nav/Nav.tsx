@@ -80,6 +80,18 @@ export default function Nav() {
               <span aria-hidden className={`block w-full h-0.5 rounded mt-2 origin-left transform transition-all duration-200 bg-[var(--accent-500)] scale-x-0 opacity-0`} />
             </span>
           </a>
+
+          <a href="https://www.linkedin.com/in/adam-s-491036232/" target="_blank" rel="noopener noreferrer" className={`${base} relative`}>
+            <span className="flex flex-col items-start">
+              <span className="flex items-center gap-2">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.036-1.85-3.036-1.852 0-2.135 1.446-2.135 2.942v5.663H9.351V9h3.414v1.561h.049c.476-.9 1.636-1.85 3.369-1.85 3.603 0 4.27 2.372 4.27 5.456v6.285zM5.337 7.433c-1.144 0-2.07-.928-2.07-2.071 0-1.144.926-2.07 2.07-2.07 1.144 0 2.071.926 2.071 2.07 0 1.143-.927 2.071-2.071 2.071zM6.868 20.452H3.806V9h3.062v11.452z" />
+                </svg>
+                <span>LinkedIn</span>
+              </span>
+              <span aria-hidden className={`block w-full h-0.5 rounded mt-2 origin-left transform transition-all duration-200 bg-[var(--accent-500)] scale-x-0 opacity-0`} />
+            </span>
+          </a>
         </div>
       </div>
     </nav>

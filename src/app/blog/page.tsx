@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function BlogPage() {
   return (
-    <main className="max-w-4xl mx-auto px-6 py-20">
+    <main className="max-w-7xl mx-auto px-6 py-20">
       <header className="mb-6">
         <h1 className="text-3xl font-bold">Blog & Publications</h1>
         <p className="text-gray-400 mt-2">Notes, papers, and tutorials — coming soon.</p>
