@@ -45,7 +45,7 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="max-w-7xl mx-auto px-6 py-20">
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-20">
       <header className="mb-6">
         <h1 className="text-3xl font-bold">Contact</h1>
         <p className="text-gray-400 mt-2">Thanks for stopping by — send a note and I will reply.</p>

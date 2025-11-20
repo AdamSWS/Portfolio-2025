@@ -48,7 +48,7 @@ export default async function ProjectsPage() {
     .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
 
   return (
-    <main className="max-w-7xl mx-auto px-6 py-12">
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12">
       <header className="mb-8">
         <div>
           <h1 className="text-3xl font-bold mb-2">Projects</h1>
@@ -59,7 +59,7 @@ export default async function ProjectsPage() {
       {filtered.length === 0 ? (
         <p className="text-gray-500">No public repositories found or GitHub API rate-limited.</p>
       ) : (
-        <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+        <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 auto-rows-fr">
           {filtered.map((repo) => {
             const slug = LOCAL_PROJECT_SLUGS[repo.name.toLowerCase()]
             return (

@@ -9,7 +9,7 @@ import ExperienceEducation from './ExperienceEducation'
 export default function Home() {
   return (
     <main className="text-gray-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7">
             <Hero />

@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function CausalEffectProject() {
   return (
     <main className="min-h-screen bg-[#0b0e12] text-gray-100 py-12">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <Link href="/" className="text-blue-400 hover:underline">← Back</Link>
 
         <header className="mt-6 mb-6">

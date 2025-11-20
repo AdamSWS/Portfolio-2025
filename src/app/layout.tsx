@@ -34,11 +34,19 @@ export default function RootLayout({
           <main className="flex-1 overflow-auto">{children}</main>
 
           <footer className="w-full border-t border-white/5 bg-transparent">
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6 flex items-center justify-between text-sm text-gray-400">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6 flex items-center justify-between text-sm text-gray-400">
               <div>© {new Date().getFullYear()} Adam — Built with Next.js</div>
               <div className="flex items-center gap-4">
-                <a href="https://github.com/AdamSWS" target="_blank" rel="noopener noreferrer" className="hover:text-white">GitHub</a>
-                <a href="https://www.linkedin.com/in/adam-s-491036232/" target="_blank" rel="noopener noreferrer" className="hover:text-white">LinkedIn</a>
+                <a href="https://github.com/AdamSWS" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true"><path d="M12 .5C5.73.5.75 5.48.75 11.76c0 4.93 3.19 9.1 7.61 10.57.56.1.77-.24.77-.53 0-.26-.01-.96-.01-1.88-3.09.67-3.75-1.49-3.75-1.49-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.17 1.73 1.17 1 .17.7 1.66.7 1.66.9 1.54 2.35 1.1 2.92.84.09-.66.39-1.1.71-1.35-2.47-.28-5.06-1.24-5.06-5.51 0-1.22.44-2.21 1.16-2.99-.12-.29-.5-1.45.11-3.02 0 0 .95-.31 3.12 1.15.9-.25 1.86-.37 2.82-.37.96 0 1.92.12 2.82.37 2.17-1.46 3.12-1.15 3.12-1.15.61 1.57.23 2.73.11 3.02.72.78 1.16 1.77 1.16 2.99 0 4.28-2.6 5.23-5.08 5.51.4.34.76 1.01.76 2.03 0 1.47-.01 2.66-.01 3.02 0 .29.21.64.78.53 4.42-1.48 7.6-5.65 7.6-10.58C23.25 5.48 18.27.5 12 .5z"/></svg>
+                  <span className="hidden sm:inline">GitHub</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/adam-s-491036232/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white" aria-label="LinkedIn">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.036-1.85-3.036-1.852 0-2.135 1.446-2.135 2.942v5.663H9.351V9h3.414v1.561h.049c.476-.9 1.636-1.85 3.369-1.85 3.603 0 4.27 2.372 4.27 5.456v6.285zM5.337 7.433c-1.144 0-2.07-.928-2.07-2.071 0-1.144.926-2.07 2.07-2.07 1.144 0 2.071.926 2.071 2.07 0 1.143-.927 2.071-2.071 2.071zM6.868 20.452H3.806V9h3.062v11.452z"/></svg>
+                  <span className="hidden sm:inline">LinkedIn</span>
+                </a>
+
                 <a href="/downloads/adam_shaar_softres.pdf" download className="hover:text-white" aria-label="Download resume">Resume</a>
               </div>
             </div>
