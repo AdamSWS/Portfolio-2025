@@ -1,7 +1,22 @@
 import Link from 'next/link';
 
+export const metadata = {
+  title: 'Fisher AI — Project',
+  description: 'FisherAI — document automation & labelling workflows for printing business.',
+  openGraph: {
+    title: 'FisherAI — Adam Shaar',
+    description: 'FisherAI — document automation & labelling workflows',
+    url: 'https://ashaar.me/projects/fisherai',
+    images: [
+      { url: 'https://ashaar.me/images/og-fisherai.svg', width: 1200, height: 630, alt: 'FisherAI' }
+    ],
+  }
+}
+
 export default function FisherAI() {
   return (
+    <>
+      {/* Server-side metadata exported via `metadata` */}
     <main className="min-h-screen bg-[#0b0e12] text-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <Link href="/" className="text-blue-400 hover:underline">← Back</Link>
@@ -40,5 +55,6 @@ export default function FisherAI() {
         </section>
       </div>
     </main>
+    </>
   );
 }

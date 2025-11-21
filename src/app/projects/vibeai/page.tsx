@@ -1,7 +1,22 @@
 import Link from 'next/link';
 
+export const metadata = {
+  title: 'VIBE AI — Project',
+  description: 'VIBE AI — Trend-informed YouTube idea generation using ML models and GPT-2.',
+  openGraph: {
+    title: 'VIBE AI — Adam Shaar',
+    description: 'VIBE AI — Trend-informed YouTube idea generator',
+    url: 'https://ashaar.me/projects/vibeai',
+    images: [
+      { url: 'https://ashaar.me/images/og-vibeai.svg', width: 1200, height: 630, alt: 'VIBE AI' }
+    ],
+  }
+}
+
 export default function VibeAI() {
   return (
+    <>
+      {/* Server-side metadata exported via `metadata` */}
     <main className="min-h-screen bg-[#0b0e12] text-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <Link href="/" className="text-blue-400 hover:underline">← Back</Link>
@@ -36,5 +51,6 @@ export default function VibeAI() {
         </section>
       </div>
     </main>
+    </>
   );
 }

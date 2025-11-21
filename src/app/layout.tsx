@@ -21,12 +21,53 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Basic SEO + Open Graph defaults */}
+        <meta name="description" content="Adam Shaar — machine learning engineer; portfolio of projects, downloads, and contact for recruiters." />
+        <meta property="og:title" content="Adam Shaar — Portfolio" />
+        <meta property="og:description" content="Machine learning & product engineering. Featured projects, downloads, and contact." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://ashaar.me/" />
+        <meta property="og:image" content="https://ashaar.me/images/og.svg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@AdamSWS" />
         {/* Preconnect fonts to help early font fetches (next/font still manages font files) */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="icon" href="/favicon.svg" />
+        <meta name="theme-color" content="#0b0e12" />
         {/* Inline minimal critical CSS for the hero LCP paragraph to avoid waiting for full CSS */}
         <style dangerouslySetInnerHTML={{ __html: `
           .lcp-critical { font-size: 1.5rem; color: #e6eef8; max-width: 48rem; margin-bottom: 1.5rem; }
         ` }} />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Adam Shaar",
+              "url": "https://ashaar.me/",
+              "sameAs": [
+                "https://github.com/AdamSWS",
+                "https://www.linkedin.com/in/adam-s-491036232/",
+                "https://app.joinhandshake.com/profiles/wyrh5a"
+              ],
+              "jobTitle": "Machine Learning Engineer",
+              "description": "Machine learning and product engineering — projects, downloads, and contact for recruiters."
+            }) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Adam Shaar — Portfolio",
+              "url": "https://ashaar.me/",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://ashaar.me/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            }) }}
+          />
       </head>
       <body className={`${inter.variable} antialiased site-gradient`}>
         <div className="min-h-screen flex flex-col">
@@ -40,6 +81,15 @@ export default function RootLayout({
                 <a href="https://github.com/AdamSWS" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white" aria-label="GitHub">
                   <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true"><path d="M12 .5C5.73.5.75 5.48.75 11.76c0 4.93 3.19 9.1 7.61 10.57.56.1.77-.24.77-.53 0-.26-.01-.96-.01-1.88-3.09.67-3.75-1.49-3.75-1.49-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.17 1.73 1.17 1 .17.7 1.66.7 1.66.9 1.54 2.35 1.1 2.92.84.09-.66.39-1.1.71-1.35-2.47-.28-5.06-1.24-5.06-5.51 0-1.22.44-2.21 1.16-2.99-.12-.29-.5-1.45.11-3.02 0 0 .95-.31 3.12 1.15.9-.25 1.86-.37 2.82-.37.96 0 1.92.12 2.82.37 2.17-1.46 3.12-1.15 3.12-1.15.61 1.57.23 2.73.11 3.02.72.78 1.16 1.77 1.16 2.99 0 4.28-2.6 5.23-5.08 5.51.4.34.76 1.01.76 2.03 0 1.47-.01 2.66-.01 3.02 0 .29.21.64.78.53 4.42-1.48 7.6-5.65 7.6-10.58C23.25 5.48 18.27.5 12 .5z"/></svg>
                   <span className="hidden sm:inline">GitHub</span>
+                </a>
+
+                <a href="https://app.joinhandshake.com/profiles/wyrh5a" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white" aria-label="Handshake">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
+                    <rect x="4" y="4" width="2" height="16" />
+                    <rect x="18" y="4" width="2" height="16" />
+                    <rect x="6" y="11" width="12" height="2" />
+                  </svg>
+                  <span className="hidden sm:inline">Handshake</span>
                 </a>
 
                 <a href="https://www.linkedin.com/in/adam-s-491036232/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white" aria-label="LinkedIn">

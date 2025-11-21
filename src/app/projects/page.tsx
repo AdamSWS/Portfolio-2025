@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import Image from 'next/image'
+// Server-side metadata exported via `metadata` (App Router) — SEO component not required here.
+// Image import removed (unused)
 
 type Repo = {
   id: number
@@ -39,6 +40,24 @@ async function fetchRepos(): Promise<Repo[]> {
   return data as Repo[]
 }
 
+export const metadata = {
+  title: 'Projects',
+  description: 'Public GitHub projects and case studies by Adam Shaar',
+  openGraph: {
+    title: 'Projects · Adam Shaar',
+    description: 'Public GitHub projects and case studies by Adam Shaar',
+    url: 'https://ashaar.me/projects',
+    images: [
+      {
+        url: 'https://ashaar.me/images/og.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Adam Shaar projects'
+      }
+    ],
+  },
+}
+
 export default async function ProjectsPage() {
   const repos = await fetchRepos()
 
@@ -51,8 +70,8 @@ export default async function ProjectsPage() {
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12">
       <header className="mb-8">
         <div>
-          <h1 className="text-3xl font-bold mb-2">Projects</h1>
-          <p className="text-gray-600">Automatically surfaced from your public GitHub repos.</p>
+          <h1 className="text-2xl md:text-3xl font-bold mb-2">Projects</h1>
+          <p className="text-gray-400 text-sm md:text-base mt-2">Select a project card to open its GitHub repository.</p>
         </div>
       </header>
 

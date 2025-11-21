@@ -1,17 +1,17 @@
-"use client"
+import ContactForm from '../../components/Contact/ContactForm'
 
-import { useState } from 'react'
-import Link from 'next/link'
+export const metadata = {
+  title: 'Contact — Adam Shaar',
+  description: 'Contact Adam Shaar — send a message to discuss projects or opportunities.',
+  openGraph: {
+    title: 'Contact — Adam Shaar',
+    description: 'Get in touch with Adam Shaar about projects or opportunities',
+    url: 'https://ashaar.me/contact',
+    images: [{ url: 'https://ashaar.me/images/og.svg', alt: 'Contact — Adam Shaar' }]
+  }
+}
 
 export default function ContactPage() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [subject, setSubject] = useState('')
-  const [message, setMessage] = useState('')
-  const [website, setWebsite] = useState('') // honeypot
-  const [status, setStatus] = useState<'idle'|'sending'|'success'|'error'>('idle')
-  const [error, setError] = useState<string | null>(null)
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
@@ -46,49 +46,13 @@ export default function ContactPage() {
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-20">
+      {/* Server-side metadata exported via `metadata` */}
       <header className="mb-6">
         <h1 className="text-3xl font-bold">Contact</h1>
-        <p className="text-gray-400 mt-2">Thanks for stopping by — send a note and I will reply.</p>
+        <p className="text-gray-400 mt-2">Want to reach out? Fill out the form below and I will reach back as soon as possible.</p>
       </header>
 
-      <section className="mt-8 bg-transparent card-gradient rounded-lg p-6">
-        <form onSubmit={handleSubmit} className="grid gap-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <label className="flex flex-col">
-              <span className="text-sm text-gray-300">Name</span>
-              <input value={name} onChange={(e)=>setName(e.target.value)} className="mt-1 p-2 rounded bg-transparent border border-white/10" />
-            </label>
-
-            <label className="flex flex-col">
-              <span className="text-sm text-gray-300">Email</span>
-              <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" className="mt-1 p-2 rounded bg-transparent border border-white/10" />
-            </label>
-          </div>
-
-          <label className="flex flex-col">
-            <span className="text-sm text-gray-300">Subject (optional)</span>
-            <input value={subject} onChange={(e)=>setSubject(e.target.value)} className="mt-1 p-2 rounded bg-transparent border border-white/10" />
-          </label>
-
-          <label className="flex flex-col">
-            <span className="text-sm text-gray-300">Message</span>
-            <textarea value={message} onChange={(e)=>setMessage(e.target.value)} rows={6} className="mt-1 p-2 rounded bg-transparent border border-white/10" />
-          </label>
-
-          {/* Honeypot field - visually hidden */}
-          <input aria-hidden value={website} onChange={(e)=>setWebsite(e.target.value)} name="website" tabIndex={-1} autoComplete="off" title="Leave this field blank" className="hidden" />
-
-          <div className="flex items-center gap-3">
-            <button type="submit" disabled={status==='sending'} className="px-4 py-2 bg-indigo-600 text-white rounded">
-              {status === 'sending' ? 'Sending...' : 'Send message'}
-            </button>
-            <Link href="/" className="text-sm text-gray-300 hover:text-white">Back home</Link>
-          </div>
-
-          {status === 'success' && <div className="text-sm text-green-400">Thanks — your message was sent.</div>}
-          {error && <div className="text-sm text-red-400">{error}</div>}
-        </form>
-      </section>
+      <ContactForm />
     </main>
   )
 }

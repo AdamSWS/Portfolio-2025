@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#071025"/>
+  <text x="60" y="180" fill="#e6eef8" font-size="60" font-family="Inter, system-ui" font-weight="700">Fisher AI</text>
+  <text x="60" y="240" fill="#c0c6cc" font-size="26">Document automation for printing & shipping</text>
+  <rect x="60" y="300" width="240" height="12" rx="6" fill="#9b7bff" />
+</svg>

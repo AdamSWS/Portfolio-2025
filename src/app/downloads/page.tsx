@@ -74,14 +74,27 @@ async function listFilesInPublic(): Promise<FileEntry[]> {
   return entries
 }
 
+export const metadata = {
+  title: 'Downloads — Adam Shaar',
+  description: 'Resume and downloads for recruiters and hiring teams',
+  openGraph: {
+    title: 'Downloads — Adam Shaar',
+    description: 'Download resume and public files from Adam Shaar',
+    url: 'https://ashaar.me/downloads',
+    images: [{ url: 'https://ashaar.me/images/og.svg', alt: 'Downloads — Adam Shaar' }]
+  }
+}
+
 export default async function DownloadsPage() {
   const files = await listFilesInPublic()
 
   return (
+    <>
+      {/* Server-side metadata exported via `metadata` */}
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
       <header className="mb-6">
         <h1 className="text-3xl font-bold">Downloads</h1>
-        <p className="text-gray-400 mt-2">Public files available for recruiters and hiring teams. Click a file to download or open it in your browser.</p>
+        <p className="text-gray-400 mt-2">Click a file to download or open it in your browser.</p>
       </header>
 
       <section className="mt-8 bg-transparent card-gradient rounded-lg p-6">
@@ -141,5 +154,6 @@ export default async function DownloadsPage() {
         )}
       </section>
     </main>
+    </>
   )
 }

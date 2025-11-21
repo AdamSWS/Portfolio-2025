@@ -1,7 +1,22 @@
 import Link from 'next/link';
 
+export const metadata = {
+  title: 'Causal Effect Query — Project',
+  description: 'Causal Effect Query — tooling & evaluation for causal inference queries.',
+  openGraph: {
+    title: 'Causal Effect Query — Adam Shaar',
+    description: 'Tools and evaluations for causal inference queries.',
+    url: 'https://ashaar.me/projects/causal-effect-query',
+    images: [
+      { url: 'https://ashaar.me/images/og-causal-effect-query.svg', width: 1200, height: 630, alt: 'Causal Effect Query' }
+    ],
+  }
+}
+
 export default function CausalEffectProject() {
   return (
+    <>
+      {/* Server-side metadata exported via `metadata` */}
     <main className="min-h-screen bg-[#0b0e12] text-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <Link href="/" className="text-blue-400 hover:underline">← Back</Link>
@@ -31,5 +46,6 @@ export default function CausalEffectProject() {
         </section>
       </div>
     </main>
+    </>
   );
 }

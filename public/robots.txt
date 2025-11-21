@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: https://ashaar.me/sitemap.xml
+
+# Block any private paths you don't want crawled (none by default)

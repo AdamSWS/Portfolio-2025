@@ -1,7 +1,10 @@
 import Link from 'next/link'
+import SEO from '../../components/SEO/SEO'
 
 export default function BlogPage() {
   return (
+    <>
+      {/* Server-side metadata exported via `metadata` in the future */}
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-20">
       <header className="mb-6">
         <h1 className="text-3xl font-bold">Blog & Publications</h1>
@@ -18,5 +21,6 @@ export default function BlogPage() {
         </article>
       </section>
     </main>
+    </>
   )
 }
