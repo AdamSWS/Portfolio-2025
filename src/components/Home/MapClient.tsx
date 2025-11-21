@@ -13,7 +13,11 @@ export default function MapClient() {
 
   useEffect(() => {
     let mounted = true
-    void import('leaflet').then((L) => {
+    void import('leaflet').then((mod) => {
+      // Support both CommonJS and ES module shapes: module default or direct export
+      // Use `any` here intentionally to avoid strict typing issues for the dynamic import.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const L: any = (mod as any).default ?? mod
       L.Icon.Default.mergeOptions({
         iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
         iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
