@@ -41,12 +41,12 @@ async function listFilesInPublic(): Promise<FileEntry[]> {
         try {
           const st = await fs.stat(full)
           entries.push({ name: it.name, href: '/' + encodeURIComponent(it.name), size: st.size, mtimeMs: st.mtimeMs })
-        } catch (e) {
+        } catch {
           // ignore
         }
       }
     }
-  } catch (e) {
+  } catch {
     // if public doesn't exist or read fails, return empty
   }
 
@@ -60,12 +60,12 @@ async function listFilesInPublic(): Promise<FileEntry[]> {
         try {
           const st = await fs.stat(full)
           entries.push({ name: path.posix.join('downloads', it.name), href: '/downloads/' + encodeURIComponent(it.name), size: st.size, mtimeMs: st.mtimeMs })
-        } catch (e) {
+        } catch {
           // ignore
         }
       }
     }
-  } catch (e) {
+  } catch {
     // no downloads dir — that's fine
   }
 

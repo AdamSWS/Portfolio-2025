@@ -21,7 +21,6 @@ export default function MapClient() {
       })
       if (mounted) setLeafletReady(true)
     }).catch((err) => {
-      // eslint-disable-next-line no-console
       console.warn('leaflet import failed', err)
     })
     return () => { mounted = false }

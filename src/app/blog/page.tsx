@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import SEO from '../../components/SEO/SEO'
 
 export default function BlogPage() {
   return (

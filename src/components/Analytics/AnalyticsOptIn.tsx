@@ -31,7 +31,7 @@ export default function AnalyticsOptIn() {
       } else {
         localStorage.setItem(STORAGE_KEY, 'false')
       }
-    } catch (e) {}
+    } catch {}
   }, [enabled])
 
   return (

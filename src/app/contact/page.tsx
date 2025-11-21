@@ -12,37 +12,7 @@ export const metadata = {
 }
 
 export default function ContactPage() {
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setError(null)
-    if (!name || !email || !message) {
-      setError('Please fill name, email and message')
-      return
-    }
-    setStatus('sending')
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, subject, message, website })
-      })
-      const data = await res.json()
-      if (!res.ok) {
-        setError(data?.error || 'Failed to send message')
-        setStatus('error')
-        return
-      }
-      setStatus('success')
-      setName('')
-      setEmail('')
-      setSubject('')
-      setMessage('')
-    } catch (err) {
-      console.error(err)
-      setError('Server error')
-      setStatus('error')
-    }
-  }
+  // Contact form submission is handled inside `ContactForm` component.
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-20">

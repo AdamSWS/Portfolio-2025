@@ -123,8 +123,7 @@ export default function Nav() {
 function MobileMenu() {
   const [open, setOpen] = useState(false)
   const pathname = usePathname() || '/'
-
-  const base = 'block px-4 py-2 text-sm text-gray-300 hover:text-gray-100'
+  
 
   return (
     <div className="relative">
