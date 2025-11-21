@@ -116,15 +116,19 @@ export default async function DownloadsPage() {
                   {files.map((f) => {
                     const displayName = f.name.includes('/') ? f.name.split('/').pop()! : f.name
                     return (
-                      <tr key={f.href} className="border-t border-white/5">
-                        <td className="px-3 py-3">
-                          <a href={f.href} className="text-indigo-300 hover:underline" target="_blank" rel="noreferrer">
-                            {displayName}
-                          </a>
-                        </td>
-                        <td className="px-3 py-3 text-sm text-gray-300">{formatBytes(f.size)}</td>
-                        <td className="px-3 py-3 text-sm text-gray-300">{formatDate(f.mtimeMs)}</td>
-                      </tr>
+                              <tr key={f.href} className="border-t border-white/5 hover:bg-white/2 focus-within:bg-white/3">
+                                <td className="px-3 py-3">
+                                  <a href={f.href} className="block text-indigo-300 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-500" target="_blank" rel="noreferrer">
+                                    {displayName}
+                                  </a>
+                                </td>
+                                <td className="px-3 py-3 text-sm text-gray-300">
+                                  <a href={f.href} className="block text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" target="_blank" rel="noreferrer">{formatBytes(f.size)}</a>
+                                </td>
+                                <td className="px-3 py-3 text-sm text-gray-300">
+                                  <a href={f.href} className="block text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" target="_blank" rel="noreferrer">{formatDate(f.mtimeMs)}</a>
+                                </td>
+                              </tr>
                     )
                   })}
                 </tbody>
@@ -137,7 +141,7 @@ export default async function DownloadsPage() {
                 {files.map((f) => {
                   const displayName = f.name.includes('/') ? f.name.split('/').pop()! : f.name
                   return (
-                    <li key={f.href} className="border border-white/5 rounded-lg p-3 bg-transparent">
+                    <li key={f.href} className="border border-white/5 rounded-lg p-3 bg-transparent hover:bg-white/2 focus-within:bg-white/3">
                       <a href={f.href} className="flex items-center justify-between gap-3" target="_blank" rel="noreferrer">
                         <div className="flex-1 min-w-0">
                           <div className="text-indigo-300 font-medium truncate break-words">{displayName}</div>

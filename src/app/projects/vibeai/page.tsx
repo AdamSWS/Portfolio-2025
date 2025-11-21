@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import SEO from '../../../components/SEO/SEO'
 
 export const metadata = {
   title: 'VIBE AI — Project',
@@ -17,6 +18,37 @@ export default function VibeAI() {
   return (
     <>
       {/* Server-side metadata exported via `metadata` */}
+      <SEO title="VIBE AI — Project" description="VIBE AI — Trend-informed YouTube idea generation" pathname="/projects/vibeai" image="/images/og-vibeai.svg" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareSourceCode",
+          "name": "VIBE AI",
+          "description": "VIBE AI ingests YouTube comments, metadata, and trends to produce tailored video concepts, titles, and prompts.",
+          "url": "https://ashaar.me/projects/vibeai",
+          "codeRepository": "https://github.com/AdamSWS/vibeai",
+          "programmingLanguage": "Python",
+          "datePublished": "2023-01-01",
+          "author": {
+            "@type": "Person",
+            "name": "Adam Shaar",
+            "url": "https://ashaar.me/"
+          }
+        }) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ashaar.me/" },
+            { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://ashaar.me/projects" },
+            { "@type": "ListItem", "position": 3, "name": "VIBE AI", "item": "https://ashaar.me/projects/vibeai" }
+          ]
+        }) }}
+      />
     <main className="min-h-screen bg-[#0b0e12] text-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <Link href="/" className="text-blue-400 hover:underline">← Back</Link>

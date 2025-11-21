@@ -20,6 +20,25 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Performance & Monitoring helpers
+
+Recommended quick actions to improve LCP and monitoring:
+
+- Convert large raster images (`public/me.jpg`, other photos) to WebP/AVIF and compress them. A helper script is provided:
+
+```powershell
+npm install -D sharp
+npm run convert-images
+```
+
+- Analytics opt-in: a privacy-friendly Plausible opt-in checkbox is included in the footer. Users must opt in to load Plausible.
+
+- Error/perf monitoring: add a Sentry DSN as `NEXT_PUBLIC_SENTRY_DSN` and follow Sentry docs. This repo includes a short scaffold and instructions — install `@sentry/browser` if you want to enable it.
+
+## Search Console / Sitemap
+
+To verify indexing, add the `https://ashaar.me/sitemap.xml` URL to Google Search Console and check coverage. The repository includes `public/sitemap.xml` and `public/robots.txt`.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

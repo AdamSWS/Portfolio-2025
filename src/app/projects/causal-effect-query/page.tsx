@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import SEO from '../../../components/SEO/SEO'
 
 export const metadata = {
   title: 'Causal Effect Query — Project',
@@ -17,6 +18,33 @@ export default function CausalEffectProject() {
   return (
     <>
       {/* Server-side metadata exported via `metadata` */}
+      <SEO title="Causal Effect Query — Project" description="Causal Effect Query — tooling & evaluation for causal inference" pathname="/projects/causal-effect-query" image="/images/og-causal-effect-query.svg" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareSourceCode",
+          "name": "Causal Effect Query",
+          "description": "Tooling and evaluation for causal inference queries.",
+          "url": "https://ashaar.me/projects/causal-effect-query",
+          "codeRepository": "https://github.com/AdamSWS/causal-effect-query",
+          "programmingLanguage": "Python",
+          "datePublished": "2021-05-01",
+          "author": { "@type": "Person", "name": "Adam Shaar", "url": "https://ashaar.me/" }
+        }) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ashaar.me/" },
+            { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://ashaar.me/projects" },
+            { "@type": "ListItem", "position": 3, "name": "Causal Effect Query", "item": "https://ashaar.me/projects/causal-effect-query" }
+          ]
+        }) }}
+      />
     <main className="min-h-screen bg-[#0b0e12] text-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <Link href="/" className="text-blue-400 hover:underline">← Back</Link>

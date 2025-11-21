@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import React from 'react'
-import MapClient from './MapClient'
 
 export default function ProfileCard() {
   return (

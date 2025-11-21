@@ -82,7 +82,7 @@ export default async function ProjectsPage() {
           {filtered.map((repo) => {
             const slug = LOCAL_PROJECT_SLUGS[repo.name.toLowerCase()]
             return (
-              <article key={repo.id} className="relative rounded-2xl p-6 hover:shadow-lg transition-shadow card-gradient flex flex-col justify-between h-full overflow-hidden">
+              <article key={repo.id} className="relative group rounded-2xl p-6 transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg focus-within:ring-2 focus-within:ring-indigo-500 card-gradient flex flex-col justify-between h-full overflow-hidden">
                 {/* Full-card clickable area (keeps CTAs clickable via higher z-index) */}
                 <a href={repo.html_url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${repo.name} on GitHub`} className="absolute inset-0 z-0" />
                 <div className="relative z-10">
@@ -95,9 +95,12 @@ export default async function ProjectsPage() {
                       </h3>
                       {repo.description && repo.description.trim() ? (
                         <p className="text-sm text-gray-300 mt-1 max-h-16 overflow-hidden">{repo.description}</p>
-                      ) : (
-                        <div className="text-sm text-gray-500 mt-1">{repo.language ?? ''}</div>
-                      )}
+                      ) : null}
+                      <div className="mt-2 text-xs text-gray-400 flex items-center gap-3">
+                        <span>{repo.language ?? '—'}</span>
+                        <span aria-hidden className="text-yellow-400">★</span>
+                        <span>{repo.stargazers_count ?? 0}</span>
+                      </div>
                       <div className="mt-3 flex flex-wrap gap-2">
                         {repo.topics && repo.topics.slice(0,4).map((t) => (
                           <span key={t} className="text-xs bg-gray-800 px-2 py-1 rounded text-gray-200">{t}</span>
@@ -107,11 +110,11 @@ export default async function ProjectsPage() {
                   </div>
                 </div>
 
-                <div className="mt-6 flex items-center justify-between">
+                <div className="mt-6 flex items-center justify-between z-10">
                   <div className="text-xs text-gray-400">Updated {new Date(repo.updated_at).toLocaleDateString()}</div>
-                  <div className="flex items-center gap-3 z-10">
+                  <div className="flex items-center gap-3">
                     {slug ? (
-                      <Link href={slug} className="text-sm bg-gray-100 px-3 py-1 rounded hover:bg-gray-200 z-10">
+                      <Link href={slug} className="text-sm bg-gray-100 px-3 py-1 rounded hover:bg-gray-200 z-20">
                         Read case study
                       </Link>
                     ) : null}

@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "../components/Nav/Nav";
+import AnalyticsOptIn from "../components/Analytics/AnalyticsOptIn";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -34,9 +35,20 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="icon" href="/favicon.svg" />
         <meta name="theme-color" content="#0b0e12" />
+        <link rel="canonical" href="https://ashaar.me/" />
         {/* Inline minimal critical CSS for the hero LCP paragraph to avoid waiting for full CSS */}
         <style dangerouslySetInnerHTML={{ __html: `
-          .lcp-critical { font-size: 1.5rem; color: #e6eef8; max-width: 48rem; margin-bottom: 1.5rem; }
+          .lcp-critical {
+            font-size: clamp(1.125rem, 1.5vw + 1rem, 1.75rem);
+            line-height: 1.35;
+            font-weight: 500;
+            color: #e6eef8;
+            max-width: 48rem;
+            margin-bottom: 1.25rem;
+            -webkit-font-smoothing: antialiased;
+          }
+          /* small critical background tweaks for immediate paint */
+          .site-gradient { background-color: #05060a; }
         ` }} />
           <script
             type="application/ld+json"
@@ -58,6 +70,23 @@ export default function RootLayout({
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify({
               "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Adam Shaar",
+              "url": "https://ashaar.me/",
+              "logo": "https://ashaar.me/favicon.svg",
+              "contactPoint": [{
+                "@type": "ContactPoint",
+                "telephone": "+1-000-000-0000",
+                "contactType": "Recruiting",
+                "areaServed": "US",
+                "availableLanguage": ["English"]
+              }]
+            }) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify({
+              "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Adam Shaar — Portfolio",
               "url": "https://ashaar.me/",
@@ -71,8 +100,9 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} antialiased site-gradient`}>
         <div className="min-h-screen flex flex-col">
+          <a href="#main" className="sr-only focus:not-sr-only z-50 inline-block p-2 bg-indigo-600 text-white rounded">Skip to content</a>
           <Nav />
-          <main className="flex-1 overflow-auto">{children}</main>
+          <main id="main" className="flex-1 overflow-auto">{children}</main>
 
           <footer className="w-full border-t border-white/5 bg-transparent">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6 flex items-center justify-between text-sm text-gray-400">
@@ -98,6 +128,7 @@ export default function RootLayout({
                 </a>
 
                 <a href="/downloads/adam_shaar_softres.pdf" download className="hover:text-white" aria-label="Download resume">Resume</a>
+                <AnalyticsOptIn />
               </div>
             </div>
           </footer>
