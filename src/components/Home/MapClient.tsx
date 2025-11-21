@@ -35,6 +35,7 @@ export default function MapClient() {
     return <div className="mx-auto map-placeholder bg-gray-800 rounded" />
   }
 
+  // Use the typed react-leaflet components now that types are installed
   return (
     <div className="mx-auto">
       {/* Disable the built-in Leaflet attribution control and render a small, compliant attribution below the map */}
