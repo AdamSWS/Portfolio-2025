@@ -11,7 +11,7 @@ export default function AnalyticsOptIn() {
     try {
       const v = localStorage.getItem(STORAGE_KEY)
       setEnabled(v === 'true')
-    } catch (e) {
+    } catch {
       // ignore
     }
   }, [])
