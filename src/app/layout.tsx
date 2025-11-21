@@ -34,7 +34,7 @@ export default function RootLayout({
         {/* Preconnect fonts to help early font fetches (next/font still manages font files) */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="icon" href="/favicon.svg" />
-        <meta name="theme-color" content="#0b0e12" />
+        {/* removed theme-color (browser compatibility lint); prefer `color-scheme` or CSS-based theming */}
         <link rel="canonical" href="https://ashaar.me/" />
         {/* Inline minimal critical CSS for the hero LCP paragraph to avoid waiting for full CSS */}
         <style dangerouslySetInnerHTML={{ __html: `
