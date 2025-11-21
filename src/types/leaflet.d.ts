@@ -1,6 +1,7 @@
 // Minimal declaration to satisfy TypeScript when using the 'leaflet' package dynamically.
-// If you prefer full typing, install `npm i -D @types/leaflet` instead.
+// Note: for proper typings install `npm i -D @types/leaflet`.
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare module 'leaflet' {
-  const content: unknown
+  const content: any
   export = content
 }
