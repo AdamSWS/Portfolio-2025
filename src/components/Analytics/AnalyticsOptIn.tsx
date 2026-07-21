@@ -19,12 +19,12 @@ export default function AnalyticsOptIn() {
   useEffect(() => {
     try {
       if (enabled) {
-        if (!document.querySelector('script[data-plausible]')) {
+        const token = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN
+        if (token && !document.querySelector('script[data-cf-beacon]')) {
           const s = document.createElement('script')
           s.defer = true
-          s.setAttribute('data-plausible', 'true')
-          s.setAttribute('data-domain', 'ashaar.me')
-          s.src = 'https://plausible.io/js/plausible.js'
+          s.src = 'https://static.cloudflareinsights.com/beacon.min.js'
+          s.setAttribute('data-cf-beacon', JSON.stringify({ token }))
           document.head.appendChild(s)
         }
         localStorage.setItem(STORAGE_KEY, 'true')
