@@ -71,7 +71,7 @@ export async function POST(req: Request) {
     // 3) If SendGrid is configured, send an email via SendGrid
     const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
     if (SENDGRID_API_KEY) {
-      const SENDGRID_TO = process.env.SENDGRID_TO || 'a.swshaar@gmail.com'
+      const SENDGRID_TO = process.env.SENDGRID_TO || process.env.CONTACT_TO
       const SENDGRID_FROM = process.env.SENDGRID_FROM || 'no-reply@portfolio'
 
       const payload = {
