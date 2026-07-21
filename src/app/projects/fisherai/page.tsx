@@ -10,7 +10,7 @@ export const metadata = {
     description: 'FisherAI — document automation & labelling workflows',
     url: 'https://ashaar.me/projects/fisherai',
     images: [
-      { url: 'https://ashaar.me/images/og-fisherai.svg', width: 1200, height: 630, alt: 'FisherAI' }
+      { url: 'https://ashaar.me/images/og-fisherai.png', width: 1200, height: 630, alt: 'FisherAI' }
     ],
   }
 }
@@ -19,7 +19,7 @@ export default function FisherAI() {
   return (
     <>
       {/* Server-side metadata exported via `metadata` */}
-      <SEO title="FisherAI — Project" description="FisherAI — document automation & labelling workflows" pathname="/projects/fisherai" image="/images/og-fisherai.svg" />
+      <SEO title="FisherAI — Project" description="FisherAI — document automation & labelling workflows" pathname="/projects/fisherai" image="/images/og-fisherai.png" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify({

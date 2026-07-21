@@ -10,7 +10,7 @@ export const metadata = {
     description: 'Tools and evaluations for causal inference queries.',
     url: 'https://ashaar.me/projects/causal-effect-query',
     images: [
-      { url: 'https://ashaar.me/images/og-causal-effect-query.svg', width: 1200, height: 630, alt: 'Causal Effect Query' }
+      { url: 'https://ashaar.me/images/og-causal-effect-query.png', width: 1200, height: 630, alt: 'Causal Effect Query' }
     ],
   }
 }
@@ -19,7 +19,7 @@ export default function CausalEffectProject() {
   return (
     <>
       {/* Server-side metadata exported via `metadata` */}
-      <SEO title="Causal Effect Query — Project" description="Causal Effect Query — tooling & evaluation for causal inference" pathname="/projects/causal-effect-query" image="/images/og-causal-effect-query.svg" />
+      <SEO title="Causal Effect Query — Project" description="Causal Effect Query — tooling & evaluation for causal inference" pathname="/projects/causal-effect-query" image="/images/og-causal-effect-query.png" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify({

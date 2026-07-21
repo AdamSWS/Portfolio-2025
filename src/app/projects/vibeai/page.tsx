@@ -10,7 +10,7 @@ export const metadata = {
     description: 'VIBE AI — Trend-informed YouTube idea generator',
     url: 'https://ashaar.me/projects/vibeai',
     images: [
-      { url: 'https://ashaar.me/images/og-vibeai.svg', width: 1200, height: 630, alt: 'VIBE AI' }
+      { url: 'https://ashaar.me/images/og-vibeai.png', width: 1200, height: 630, alt: 'VIBE AI' }
     ],
   }
 }
@@ -19,7 +19,7 @@ export default function VibeAI() {
   return (
     <>
       {/* Server-side metadata exported via `metadata` */}
-      <SEO title="VIBE AI — Project" description="VIBE AI — Trend-informed YouTube idea generation" pathname="/projects/vibeai" image="/images/og-vibeai.svg" />
+      <SEO title="VIBE AI — Project" description="VIBE AI — Trend-informed YouTube idea generation" pathname="/projects/vibeai" image="/images/og-vibeai.png" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify({

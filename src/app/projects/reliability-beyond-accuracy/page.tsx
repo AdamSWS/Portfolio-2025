@@ -10,7 +10,7 @@ export const metadata = {
     description: 'A comparative research review of factuality, uncertainty calibration, and bias in large language models.',
     url: 'https://ashaar.me/projects/reliability-beyond-accuracy',
     images: [
-      { url: 'https://ashaar.me/images/og.svg', width: 1200, height: 630, alt: 'Reliability Beyond Accuracy' }
+      { url: 'https://ashaar.me/images/og.png', width: 1200, height: 630, alt: 'Reliability Beyond Accuracy' }
     ],
   }
 }

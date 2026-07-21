@@ -14,6 +14,16 @@ const inter = Inter({
 export const metadata = {
   title: "Adam Shaar — Portfolio",
   description: "Adam Shaar — machine learning engineer; portfolio of projects, downloads, and contact for recruiters.",
+  openGraph: {
+    title: "Adam Shaar — Portfolio",
+    description: "Machine learning & product engineering. Featured projects, downloads, and contact.",
+    type: "website",
+    images: [{ url: "https://ashaar.me/images/og.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@AdamSWS",
+  },
 };
 
 export default function RootLayout({
@@ -24,20 +34,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Basic SEO + Open Graph defaults */}
-        <meta name="description" content="Adam Shaar — machine learning engineer; portfolio of projects, downloads, and contact for recruiters." />
-        <meta property="og:title" content="Adam Shaar — Portfolio" />
-        <meta property="og:description" content="Machine learning & product engineering. Featured projects, downloads, and contact." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ashaar.me/" />
-        <meta property="og:image" content="https://ashaar.me/images/og.svg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@AdamSWS" />
+        {/* description, Open Graph, Twitter Card, and canonical tags are handled per-page via the `metadata` export (Next.js Metadata API) */}
         {/* Preconnect fonts to help early font fetches (next/font still manages font files) */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="icon" href="/favicon.svg" />
         {/* removed theme-color (browser compatibility lint); prefer `color-scheme` or CSS-based theming */}
-        <link rel="canonical" href="https://ashaar.me/" />
         {/* Inline minimal critical CSS for the hero LCP paragraph to avoid waiting for full CSS */}
         <style dangerouslySetInnerHTML={{ __html: `
           .lcp-critical {

@@ -4,11 +4,12 @@ import Reveal from '../../components/ui/Reveal'
 export const metadata = {
   title: 'Blog & Publications — Adam Shaar',
   description: 'Notes, papers, and tutorials from Adam Shaar — coming soon.',
+  alternates: { canonical: 'https://ashaar.me/blog' },
   openGraph: {
     title: 'Blog & Publications — Adam Shaar',
     description: 'Notes, papers, and tutorials from Adam Shaar — coming soon.',
     url: 'https://ashaar.me/blog',
-    images: [{ url: 'https://ashaar.me/images/og.svg', alt: 'Blog — Adam Shaar' }]
+    images: [{ url: 'https://ashaar.me/images/og.png', width: 1200, height: 630, alt: 'Blog — Adam Shaar' }]
   }
 }
 

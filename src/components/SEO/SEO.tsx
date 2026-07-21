@@ -13,7 +13,7 @@ type Props = {
 const siteUrl = 'https://ashaar.me'
 const siteName = 'Adam Shaar — Portfolio'
 
-export default function SEO({ title, description, pathname = '/', image = '/images/og.svg', noindex }: Props) {
+export default function SEO({ title, description, pathname = '/', image = '/images/og.png', noindex }: Props) {
   const pageTitle = title ? `${title} · ${siteName}` : siteName
   const url = siteUrl + pathname
 

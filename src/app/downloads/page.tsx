@@ -78,11 +78,12 @@ async function listFilesInPublic(): Promise<FileEntry[]> {
 export const metadata = {
   title: 'Downloads — Adam Shaar',
   description: 'Resume and downloads for recruiters and hiring teams',
+  alternates: { canonical: 'https://ashaar.me/downloads' },
   openGraph: {
     title: 'Downloads — Adam Shaar',
     description: 'Download resume and public files from Adam Shaar',
     url: 'https://ashaar.me/downloads',
-    images: [{ url: 'https://ashaar.me/images/og.svg', alt: 'Downloads — Adam Shaar' }]
+    images: [{ url: 'https://ashaar.me/images/og.png', width: 1200, height: 630, alt: 'Downloads — Adam Shaar' }]
   }
 }
 

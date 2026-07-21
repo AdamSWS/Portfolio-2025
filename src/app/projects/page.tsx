@@ -44,13 +44,14 @@ async function fetchRepos(): Promise<Repo[]> {
 export const metadata = {
   title: 'Projects',
   description: 'Public GitHub projects and case studies by Adam Shaar',
+  alternates: { canonical: 'https://ashaar.me/projects' },
   openGraph: {
     title: 'Projects · Adam Shaar',
     description: 'Public GitHub projects and case studies by Adam Shaar',
     url: 'https://ashaar.me/projects',
     images: [
       {
-        url: 'https://ashaar.me/images/og.svg',
+        url: 'https://ashaar.me/images/og.png',
         width: 1200,
         height: 630,
         alt: 'Adam Shaar projects'
