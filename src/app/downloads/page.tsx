@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
 import path from 'path'
+import Reveal from '../../components/ui/Reveal'
 
 type FileEntry = {
   name: string
@@ -92,11 +93,14 @@ export default async function DownloadsPage() {
     <>
       {/* Server-side metadata exported via `metadata` */}
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
-      <header className="mb-6">
-        <h1 className="text-3xl font-bold">Downloads</h1>
-        <p className="text-gray-400 mt-2">Click a file to download or open it in your browser.</p>
-      </header>
+      <Reveal>
+        <header className="mb-6">
+          <h1 className="text-3xl font-bold">Downloads</h1>
+          <p className="text-gray-400 mt-2">Click a file to download or open it in your browser.</p>
+        </header>
+      </Reveal>
 
+      <Reveal delay={0.08}>
       <section className="mt-8 bg-transparent card-gradient rounded-lg p-6">
         {files.length === 0 ? (
           <p className="text-gray-300">No public files were found in the `public` or `public/downloads` directories.</p>
@@ -116,7 +120,7 @@ export default async function DownloadsPage() {
                   {files.map((f) => {
                     const displayName = f.name.includes('/') ? f.name.split('/').pop()! : f.name
                     return (
-                              <tr key={f.href} className="border-t border-white/5 hover:bg-white/2 focus-within:bg-white/3">
+                              <tr key={f.href} className="border-t border-white/5 hover:bg-white/[0.03] transition-colors focus-within:bg-white/[0.04]">
                                 <td className="px-3 py-3">
                                   <a href={f.href} className="block text-indigo-300 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-500" target="_blank" rel="noreferrer">
                                     {displayName}
@@ -141,7 +145,7 @@ export default async function DownloadsPage() {
                 {files.map((f) => {
                   const displayName = f.name.includes('/') ? f.name.split('/').pop()! : f.name
                   return (
-                    <li key={f.href} className="border border-white/5 rounded-lg p-3 bg-transparent hover:bg-white/2 focus-within:bg-white/3">
+                    <li key={f.href} className="border border-white/5 rounded-lg p-3 bg-transparent hover:bg-white/[0.03] hover:border-white/10 transition-colors focus-within:bg-white/[0.04]">
                       <a href={f.href} className="flex items-center justify-between gap-3" target="_blank" rel="noreferrer">
                         <div className="flex-1 min-w-0">
                           <div className="text-indigo-300 font-medium truncate break-words">{displayName}</div>
@@ -157,6 +161,7 @@ export default async function DownloadsPage() {
           </>
         )}
       </section>
+      </Reveal>
     </main>
     </>
   )

@@ -1,26 +1,29 @@
 import React from 'react'
 import Hero from './Hero'
 import ProfileCard from './ProfileCard'
-import MapCard from './MapCard'
 import FeaturedProjects from './FeaturedProjects'
 import SkillsGrid from './SkillsGrid'
 import ExperienceEducation from './ExperienceEducation'
+import Reveal from '../ui/Reveal'
 
 export default function Home() {
   return (
     <main className="text-gray-100">
       {/* Server-side metadata via `export const metadata` in `src/app/page.tsx` handles meta & OG tags */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
+          {/* Not wrapped in Reveal: contains the LCP-critical headline, which must paint immediately */}
+          <div className="lg:col-span-8 card-gradient rounded-3xl p-8 sm:p-10">
             <Hero />
-            <SkillsGrid />
           </div>
 
-          <div className="lg:col-span-5 flex flex-col items-center lg:items-end">
+          <Reveal direction="right" y={24} delay={0.1} className="lg:col-span-4 lg:row-span-2">
             <ProfileCard />
-            <MapCard />
-          </div>
+          </Reveal>
+
+          <Reveal direction="up" delay={0.2} className="lg:col-span-8 card-gradient rounded-3xl p-6 sm:p-8">
+            <SkillsGrid />
+          </Reveal>
         </div>
 
         <FeaturedProjects />

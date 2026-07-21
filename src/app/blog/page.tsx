@@ -1,24 +1,39 @@
 import Link from 'next/link'
+import Reveal from '../../components/ui/Reveal'
+
+export const metadata = {
+  title: 'Blog & Publications — Adam Shaar',
+  description: 'Notes, papers, and tutorials from Adam Shaar — coming soon.',
+  openGraph: {
+    title: 'Blog & Publications — Adam Shaar',
+    description: 'Notes, papers, and tutorials from Adam Shaar — coming soon.',
+    url: 'https://ashaar.me/blog',
+    images: [{ url: 'https://ashaar.me/images/og.svg', alt: 'Blog — Adam Shaar' }]
+  }
+}
 
 export default function BlogPage() {
   return (
     <>
-      {/* Server-side metadata exported via `metadata` in the future */}
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-20">
-      <header className="mb-6">
-        <h1 className="text-3xl font-bold">Blog & Publications</h1>
-        <p className="text-gray-400 mt-2">Notes, papers, and tutorials — coming soon.</p>
-      </header>
+      <Reveal>
+        <header className="mb-6">
+          <h1 className="text-3xl font-bold">Blog & Publications</h1>
+          <p className="text-gray-400 mt-2">Notes, papers, and tutorials — coming soon.</p>
+        </header>
+      </Reveal>
 
-      <section className="grid gap-6">
-        <article className="p-6 card-gradient rounded-lg">
-          <h2 className="text-xl font-semibold">No posts yet</h2>
-          <p className="text-gray-200 mt-2">I can scaffold an MDX-driven blog or a simple markdown index — tell me which you prefer.</p>
-          <div className="mt-4">
-            <Link href="/" className="text-sm text-gray-300 hover:text-white">Back home</Link>
-          </div>
-        </article>
-      </section>
+      <Reveal delay={0.08}>
+        <section className="grid gap-6">
+          <article className="p-6 card-gradient rounded-lg">
+            <h2 className="text-xl font-semibold">No posts yet</h2>
+            <p className="text-gray-200 mt-2">I can scaffold an MDX-driven blog or a simple markdown index — tell me which you prefer.</p>
+            <div className="mt-4">
+              <Link href="/" className="text-sm text-gray-300 hover:text-white">Back home</Link>
+            </div>
+          </article>
+        </section>
+      </Reveal>
     </main>
     </>
   )

@@ -3,9 +3,11 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import { motion, useReducedMotion } from 'motion/react'
 
 export default function Nav() {
   const pathname = usePathname() || '/'
+  const reduceMotion = useReducedMotion()
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/'
     return pathname === href || pathname.startsWith(href + '/')
@@ -15,13 +17,18 @@ export default function Nav() {
 
   return (
     <nav className="sticky top-0 z-[9999] w-full bg-[#0b0e12]/90 backdrop-blur-sm border-b border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 flex items-center justify-between">
+      <motion.div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-3 flex items-center justify-between"
+        initial={reduceMotion ? undefined : { opacity: 0, y: -16 }}
+        animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      >
         <Link href="/" className="text-lg font-semibold text-gray-100">ashaar.me</Link>
 
         <div className="hidden md:flex items-center gap-4">
           <Link href="/" className={`${base} ${isActive('/') ? 'text-white' : ''} relative`} aria-current={isActive('/') ? 'page' : undefined}>
             <span className="flex flex-col items-start">
-              <span className="flex items-center gap-2">
+              <span className={`flex items-center gap-2 px-3 py-1.5 rounded-full transition-colors ${isActive('/') ? 'bg-white/8' : ''}`}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4" aria-hidden="true">
                   <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M3 11.5L12 4l9 7.5v7.5a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-7.5z" />
                 </svg>
@@ -33,7 +40,7 @@ export default function Nav() {
 
           <Link href="/projects" className={`${base} ${isActive('/projects') ? 'text-white' : ''} relative`} aria-current={isActive('/projects') ? 'page' : undefined}>
             <span className="flex flex-col items-start">
-              <span className="flex items-center gap-2">
+              <span className={`flex items-center gap-2 px-3 py-1.5 rounded-full transition-colors ${isActive('/projects') ? 'bg-white/8' : ''}`}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4" aria-hidden="true">
                   <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M3 7h18M3 12h18M3 17h18" />
                 </svg>
@@ -45,7 +52,7 @@ export default function Nav() {
 
           <Link href="/downloads" className={`${base} ${isActive('/downloads') ? 'text-white' : ''} relative`} aria-current={isActive('/downloads') ? 'page' : undefined}>
             <span className="flex flex-col items-start">
-              <span className="flex items-center gap-2">
+              <span className={`flex items-center gap-2 px-3 py-1.5 rounded-full transition-colors ${isActive('/downloads') ? 'bg-white/8' : ''}`}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4" aria-hidden="true">
                   <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M12 3v12" />
                   <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M8 11l4 4 4-4" />
@@ -59,7 +66,7 @@ export default function Nav() {
 
           <Link href="/contact" className={`${base} ${isActive('/contact') ? 'text-white' : ''} relative`} aria-current={isActive('/contact') ? 'page' : undefined}>
             <span className="flex flex-col items-start">
-              <span className="flex items-center gap-2">
+              <span className={`flex items-center gap-2 px-3 py-1.5 rounded-full transition-colors ${isActive('/contact') ? 'bg-white/8' : ''}`}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-4 h-4" aria-hidden="true">
                   <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M21 8v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8" />
                   <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M7 8V6a5 5 0 0 1 10 0v2" />
@@ -115,7 +122,7 @@ export default function Nav() {
         <div className="md:hidden">
             <MobileMenu />
           </div>
-      </div>
+      </motion.div>
     </nav>
   )
 }
