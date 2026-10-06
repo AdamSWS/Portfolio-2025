@@ -1,0 +1,6 @@
+# Netlify's secret scanner compares build files against the values of secret env vars.
+# CONTACT_TO is the owner's public email address, which the resume PDF prints on purpose
+# (it is also on LinkedIn). Skip just that one file; scanning stays on for everything else.
+# The build command, publish directory and Next.js runtime are still set in the Netlify UI.
+[build.environment]
+  SECRETS_SCAN_OMIT_PATHS = "public/downloads/adam_shaar_softres.pdf,**/downloads/adam_shaar_softres.pdf"
