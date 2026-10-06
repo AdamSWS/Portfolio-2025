@@ -48,7 +48,7 @@ export default function FisherAI() {
       />
     <main className="min-h-screen text-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <Link href="/" className="text-blue-400 hover:underline">← Back</Link>
+        <Link href="/" className="inline-block py-3 text-blue-400 hover:underline">← Back</Link>
 
         <Reveal>
           <header className="mt-6 mb-8">

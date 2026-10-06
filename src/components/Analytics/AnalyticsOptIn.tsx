@@ -36,7 +36,7 @@ export default function AnalyticsOptIn() {
 
   return (
     <div>
-      <label className="inline-flex items-center gap-2 text-white">
+      <label className="inline-flex items-center gap-1.5 py-3 lg:py-0 text-white">
         <input
           type="checkbox"
           checked={enabled}
@@ -44,7 +44,7 @@ export default function AnalyticsOptIn() {
           className="w-3 h-3"
           aria-label="Enable analytics"
         />
-        <span className="text-xs">Enable analytics</span>
+        <span className="text-xs"><span className="lg:hidden">Analytics</span><span className="hidden lg:inline">Enable analytics</span></span>
       </label>
     </div>
   )

@@ -71,18 +71,20 @@ export default function RootLayout({
             </div>
           </div>
 
-          <footer className="status-bar sticky bottom-0 z-40">
-            <div className="flex items-center justify-between gap-4 px-3 h-6 whitespace-nowrap overflow-hidden">
-              <div className="flex items-center gap-4">
+          <footer className="status-bar static lg:sticky lg:bottom-0 z-40">
+            {/* Phones and tablets: three links + analytics toggle, each a 44px-tall tap target, static so it doesn't
+                eat screen height. Large screens: the compact one-line editor status bar. */}
+            <div className="flex flex-wrap items-center justify-center md:justify-between gap-x-3 lg:gap-x-4 px-2 lg:px-3 lg:h-6 lg:overflow-hidden whitespace-nowrap">
+              <div className="hidden md:flex items-center gap-4">
                 <span>main</span>
-                <span className="hidden sm:inline">© {new Date().getFullYear()} Adam Shaar</span>
+                <span>© {new Date().getFullYear()} Adam Shaar</span>
               </div>
-              <div className="flex items-center gap-4">
-                <a href="https://github.com/AdamSWS" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://www.linkedin.com/in/adam-s-491036232/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="/downloads/adam_shaar_softres.pdf">Resume</a>
-                <span className="hidden sm:inline">UTF-8</span>
-                <span className="hidden md:inline">TypeScript React</span>
+              <div className="flex flex-wrap items-center justify-center gap-x-3 lg:gap-x-4">
+                <a href="https://github.com/AdamSWS" target="_blank" rel="noopener noreferrer" className="py-3 lg:py-0">GitHub</a>
+                <a href="https://www.linkedin.com/in/adam-s-491036232/" target="_blank" rel="noopener noreferrer" className="py-3 lg:py-0">LinkedIn</a>
+                <a href="/downloads/adam_shaar_softres.pdf" className="py-3 lg:py-0">Resume</a>
+                <span className="hidden lg:inline">UTF-8</span>
+                <span className="hidden xl:inline">TypeScript React</span>
                 <AnalyticsOptIn />
               </div>
             </div>

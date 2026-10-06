@@ -66,14 +66,14 @@ export default function Home() {
       {/* Server-side metadata via `export const metadata` in `src/app/page.tsx` handles meta & OG tags */}
       <section className="bg-[var(--hero)] border-b border-[var(--hero-line)]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
-          <div className="flex items-center justify-between gap-6">
+          <div className="flex items-center justify-between gap-4 sm:gap-6">
             <div className="name-box">
               <h1 className="name-fill">
                 <span className="block">Adam</span>
                 <span className="block">Shaar</span>
               </h1>
             </div>
-            <div className="w-40 h-40 sm:w-56 sm:h-56 shrink-0 overflow-hidden rounded-sm bg-gray-700 ring-2 ring-[var(--accent-500)]/30">
+            <div className="w-32 h-32 sm:w-56 sm:h-56 shrink-0 overflow-hidden rounded-sm bg-gray-700 ring-2 ring-[var(--accent-500)]/30">
               <Image src="/me.jpg" alt="Adam Shaar" width={400} height={400} className="w-full h-full object-cover" priority />
             </div>
           </div>
@@ -85,11 +85,11 @@ export default function Home() {
           <p className="lcp-critical">AI engineer with an M.S. in Computer Science from UIC.</p>
           <p className="text-gray-300 mb-4 max-w-[68ch]">I build production ML systems, and I care most about AI that&apos;s correct: I measure models before I trust them, and I build systems that fail safely when they can&apos;t verify an answer.</p>
           <p className="text-sm text-[var(--type)] mb-6">Python · Rust · TypeScript · AWS · RAG · LLM evaluation</p>
-          <nav aria-label="Links" className="flex flex-wrap gap-x-6 gap-y-3 text-blue-300">
-            <a href="https://github.com/AdamSWS" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:underline"><GitHubIcon />GitHub</a>
-            <a href="https://www.linkedin.com/in/adam-s-491036232/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:underline"><LinkedInIcon />LinkedIn</a>
-            <a href="/downloads/adam_shaar_softres.pdf" className="inline-flex items-center gap-2 hover:underline"><ResumeIcon />Resume</a>
-            <Link href="/contact" className="inline-flex items-center gap-2 hover:underline"><ContactIcon />Contact</Link>
+          <nav aria-label="Links" className="flex flex-wrap gap-x-6 gap-y-0 text-blue-300">
+            <a href="https://github.com/AdamSWS" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 py-2.5 hover:underline"><GitHubIcon />GitHub</a>
+            <a href="https://www.linkedin.com/in/adam-s-491036232/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 py-2.5 hover:underline"><LinkedInIcon />LinkedIn</a>
+            <a href="/downloads/adam_shaar_softres.pdf" className="inline-flex items-center gap-2 py-2.5 hover:underline"><ResumeIcon />Resume</a>
+            <Link href="/contact" className="inline-flex items-center gap-2 py-2.5 hover:underline"><ContactIcon />Contact</Link>
           </nav>
         </header>
 
