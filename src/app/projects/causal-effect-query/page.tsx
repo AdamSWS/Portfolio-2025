@@ -28,7 +28,6 @@ export default function CausalEffectProject() {
           "name": "Causal Effect Query",
           "description": "Tooling and evaluation for causal inference queries.",
           "url": "https://ashaar.me/projects/causal-effect-query",
-          "codeRepository": "https://github.com/AdamSWS/causal-effect-query",
           "programmingLanguage": "Python",
           "datePublished": "2021-05-01",
           "author": { "@type": "Person", "name": "Adam Shaar", "url": "https://ashaar.me/" }

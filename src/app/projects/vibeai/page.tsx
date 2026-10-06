@@ -28,7 +28,6 @@ export default function VibeAI() {
           "name": "VIBE AI",
           "description": "VIBE AI ingests YouTube comments, metadata, and trends to produce tailored video concepts, titles, and prompts.",
           "url": "https://ashaar.me/projects/vibeai",
-          "codeRepository": "https://github.com/AdamSWS/vibeai",
           "programmingLanguage": "Python",
           "datePublished": "2023-01-01",
           "author": {

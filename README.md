@@ -1,55 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ashaar.me
 
-## Getting Started
+Source for my personal portfolio, [ashaar.me](https://ashaar.me): a short intro, selected projects, experience, and a resume download.
 
-First, run the development server:
+It's styled as a light code editor: editor-style tabs for navigation, a line-number gutter, a status bar at the bottom, and the Cascadia Code typeface.
+
+## Stack
+
+- [Next.js 15](https://nextjs.org) (App Router) and React 19, TypeScript
+- Tailwind CSS v4, with the grey and blue scales remapped to the light editor palette in `src/app/globals.css`
+- [Cascadia Code](https://github.com/microsoft/cascadia-code) (SIL OFL 1.1), self-hosted in `src/app/fonts/`
+- Deployed on Netlify; every push to `main` ships
+
+## Run it locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build (also runs lint and type checks)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Layout
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Path | What it is |
+|---|---|
+| `src/components/Home/Home.tsx` | The home page: header, links, projects, experience, education |
+| `src/data/projects.ts` | The project list shared by the home page and `/projects` |
+| `src/app/projects/*` | One case-study page per project |
+| `src/components/Nav/Nav.tsx` | Editor-tab navigation |
+| `src/app/layout.tsx` | Page shell: tabs, line-number gutter, status bar |
+| `src/app/api/contact/route.ts` | Contact form endpoint |
+| `public/downloads/` | The resume PDF |
+| `public/images/engineering-pattern.svg` | The faint background tile (generated) |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Design notes
 
-## Performance & Monitoring helpers
+- **Mobile first.** Every page was checked at 320, 360, 390, 430, 768 and 1024 px: no sideways scrolling, all four tabs visible without scrolling, tap targets at least 44 px, and the name scales to fit beside the photo.
+- **No flash between pages.** Navigation uses a single enter-only CSS fade. An earlier exit animation fought the App Router and made each page flicker, so it was removed.
+- **Accessible by default.** Visible focus states, a skip link, and `prefers-reduced-motion` support.
 
-Recommended quick actions to improve LCP and monitoring:
+## Contact form
 
-- Convert large raster images (`public/me.jpg`, other photos) to WebP/AVIF and compress them. A helper script is provided:
+`POST /api/contact` sends mail through Gmail SMTP. It reads these environment variables, which are never committed (see `.gitignore`):
 
-```powershell
-npm install -D sharp
-npm run convert-images
-```
+- `GMAIL_USER`
+- `GMAIL_APP_PASSWORD`
+- `CONTACT_TO`
 
-- Analytics opt-in: a privacy-friendly Plausible opt-in checkbox is included in the footer. Users must opt in to load Plausible.
+The form includes a honeypot field to deflect simple bots. Analytics is Cloudflare Web Analytics, off until the visitor opts in (`NEXT_PUBLIC_CF_BEACON_TOKEN`).
 
-- Error/perf monitoring: add a Sentry DSN as `NEXT_PUBLIC_SENTRY_DSN` and follow Sentry docs. This repo includes a short scaffold and instructions — install `@sentry/browser` if you want to enable it.
+## License
 
-## Search Console / Sitemap
-
-To verify indexing, add the `https://ashaar.me/sitemap.xml` URL to Google Search Console and check coverage. The repository includes `public/sitemap.xml` and `public/robots.txt`.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+No open-source license is attached: the code is here to read and reference. The photo, logos, resume and written content are mine or belong to their owners, so please don't reuse them.

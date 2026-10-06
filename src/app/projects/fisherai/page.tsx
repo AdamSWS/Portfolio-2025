@@ -28,7 +28,6 @@ export default function FisherAI() {
           "name": "FisherAI",
           "description": "FisherAI processes scanned store ads and shelf imagery to extract product information and automatically generate shelf cards.",
           "url": "https://ashaar.me/projects/fisherai",
-          "codeRepository": "https://github.com/AdamSWS/fisherai",
           "programmingLanguage": "TypeScript",
           "datePublished": "2022-08-01",
           "author": { "@type": "Person", "name": "Adam Shaar", "url": "https://ashaar.me/" }
