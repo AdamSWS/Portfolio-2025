@@ -20,12 +20,12 @@ export default function SEO({ title, description, pathname = '/', image = '/imag
   return (
     <Head>
       <title>{pageTitle}</title>
-      <meta name="description" content={description || 'Adam Shaar — machine learning, engineering, and product. Projects, downloads, and contact.'} />
+      <meta name="description" content={description || 'Adam Shaar — machine learning, engineering, and product. Projects, resume, and contact.'} />
       <link rel="canonical" href={url} />
 
       {/* Open Graph */}
       <meta property="og:title" content={pageTitle} />
-      <meta property="og:description" content={description || 'Adam Shaar — machine learning, engineering, and product. Projects, downloads, and contact.'} />
+      <meta property="og:description" content={description || 'Adam Shaar — machine learning, engineering, and product. Projects, resume, and contact.'} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={siteUrl + image} />

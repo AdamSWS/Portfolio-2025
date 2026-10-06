@@ -1,53 +1,13 @@
 import Link from 'next/link'
-import Reveal from '../../components/ui/Reveal'
-// Server-side metadata exported via `metadata` (App Router) — SEO component not required here.
-// Image import removed (unused)
-
-type Repo = {
-  id: number
-  name: string
-  html_url: string
-  description: string | null
-  stargazers_count: number
-  forks_count: number
-  language: string | null
-  topics?: string[]
-  updated_at: string
-  fork?: boolean
-  archived?: boolean
-}
-
-const GITHUB_USERNAME = 'AdamSWS'
-
-// Map repo names to local case-study slugs when you have a dedicated page
-const LOCAL_PROJECT_SLUGS: Record<string, string> = {
-  fisherai: '/projects/fisherai',
-  'causal-effect-query': '/projects/causal-effect-query',
-  vibeai: '/projects/vibeai',
-}
-
-async function fetchRepos(): Promise<Repo[]> {
-  const res = await fetch(
-    `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`,
-    { headers: { Accept: 'application/vnd.github+json' }, next: { revalidate: 3600 } }
-  )
-
-  if (!res.ok) {
-    // Fail gracefully — return empty list on API error
-    return []
-  }
-
-  const data = await res.json()
-  return data as Repo[]
-}
+import { PROJECTS } from '../../data/projects'
 
 export const metadata = {
   title: 'Projects',
-  description: 'Public GitHub projects and case studies by Adam Shaar',
+  description: 'Selected projects by Adam Shaar',
   alternates: { canonical: 'https://ashaar.me/projects' },
   openGraph: {
     title: 'Projects · Adam Shaar',
-    description: 'Public GitHub projects and case studies by Adam Shaar',
+    description: 'Selected projects by Adam Shaar',
     url: 'https://ashaar.me/projects',
     images: [
       {
@@ -60,78 +20,21 @@ export const metadata = {
   },
 }
 
-export default async function ProjectsPage() {
-  const repos = await fetchRepos()
-
-  const filtered = repos
-    .filter((r) => !r.archived && !r.fork)
-    // Sort by most recently updated first
-    .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
-
+export default function ProjectsPage() {
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12">
-      <Reveal>
-        <header className="mb-8">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-bold mb-2">Projects</h1>
-            <p className="text-gray-400 text-sm md:text-base mt-2">Select a project card to open its GitHub repository.</p>
-          </div>
-        </header>
-      </Reveal>
+    <main className="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <h1 className="text-3xl font-semibold mb-2">Projects</h1>
+      <p className="text-gray-400 mb-8">Selected work. More on <a href="https://github.com/AdamSWS" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:underline">GitHub</a>.</p>
 
-      {filtered.length === 0 ? (
-        <p className="text-gray-500">No public repositories found or GitHub API rate-limited.</p>
-      ) : (
-        <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 auto-rows-fr">
-          {filtered.map((repo, i) => {
-            const slug = LOCAL_PROJECT_SLUGS[repo.name.toLowerCase()]
-            return (
-              <Reveal key={repo.id} delay={Math.min(i, 6) * 0.05}>
-                <article className="relative group rounded-2xl p-6 transition-transform transform-gpu hover:-translate-y-1 focus-within:ring-2 focus-within:ring-indigo-500 card-gradient flex flex-col justify-between h-full overflow-hidden">
-                  {/* Full-card clickable area (keeps CTAs clickable via higher z-index) */}
-                  <a href={repo.html_url} target="_blank" rel="noopener noreferrer" aria-label={`Open ${repo.name} on GitHub`} className="absolute inset-0 z-0" />
-                  <div className="relative z-10">
-                    <div>
-                      <div className="min-w-0">
-                        <h2 className="text-lg font-semibold">
-                          <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                            {repo.name}
-                          </a>
-                        </h2>
-                        {repo.description && repo.description.trim() ? (
-                          <p className="text-sm text-gray-300 mt-1 max-h-16 overflow-hidden">{repo.description}</p>
-                        ) : null}
-                        <div className="mt-2 text-xs text-gray-400 flex items-center gap-3">
-                          <span>{repo.language ?? '—'}</span>
-                          <span aria-hidden className="text-yellow-400">★</span>
-                          <span>{repo.stargazers_count ?? 0}</span>
-                        </div>
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {repo.topics && repo.topics.slice(0,4).map((t) => (
-                            <span key={t} className="pill text-xs px-2 py-1 rounded-md">{t}</span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 flex items-center justify-between z-10">
-                    <div className="text-xs text-gray-400">Updated {new Date(repo.updated_at).toLocaleDateString()}</div>
-                    <div className="flex items-center gap-3">
-                      {slug ? (
-                        <Link href={slug} className="text-sm text-gray-900 bg-gray-100 px-3 py-1 rounded hover:bg-gray-200 z-20 relative">
-                          Read case study
-                        </Link>
-                      ) : null}
-                    </div>
-                  </div>
-                </article>
-              </Reveal>
-            )
-          })}
-        </section>
-      )}
-      {/* Note removed: private repo visibility message intentionally hidden from UI */}
+      <div className="grid gap-4">
+        {PROJECTS.map((project) => (
+          <Link key={project.href} href={project.href} className="block p-5 card-gradient rounded-lg">
+            <h2 className="font-semibold mb-2 text-blue-300">{project.title}</h2>
+            <p className="text-sm text-gray-300 mb-3">{project.description}</p>
+            <div className="text-xs text-gray-400">{project.tech}</div>
+          </Link>
+        ))}
+      </div>
     </main>
   )
 }

@@ -1,105 +1,184 @@
 @import "tailwindcss";
 
+/*
+  Light IDE theme (Visual Studio Code "Light+" palette) set in Cascadia Code.
+
+  The Tailwind greys and blues are remapped below so that every existing page
+  (project case studies, contact form) flips to the light theme without edits:
+  gray-100 is now the darkest text, gray-400 the muted text, and so on.
+*/
+:root {
+  --bg: #ffffff;
+  --panel: #f3f3f3;
+  --panel-2: #f8f8f8;
+  --line: #e0e0e0;
+  --text: #1f1f1f;
+  --muted: #6b6b6b;
+  --accent: #005fb8;
+  --status: #007acc;
+  --comment: #008000; /* code-comment green: section headings */
+  --type: #267f99;    /* type-name teal: tech lines */
+  --gutter: #8a9199;
+  --gutter-bg: #f6f6f6;
+  --outer: #ececec;   /* area around the white editor panel */
+  --hero: #eef4fb;    /* pale-blue band behind the name and photo */
+  --hero-line: #d6e3f2;
+
+  --accent-400: #0078d4;
+  --accent-500: #005fb8;
+
+  --color-gray-100: #1f1f1f;
+  --color-gray-200: #2b2b2b;
+  --color-gray-300: #3b3b3b;
+  --color-gray-400: #6b6b6b;
+  --color-gray-500: #7a7a7a;
+  --color-gray-600: #bdbdbd;
+  --color-gray-700: #d4d4d4;
+  --color-gray-800: #e5e5e5;
+  --color-blue-300: #0451a5;
+  --color-blue-400: #0451a5;
+  --color-yellow-400: #b58900;
+  --color-green-400: #15803d;
+  --color-red-400: #c4262e;
+}
+
+/* Everything is sized in rem, so this one number scales the whole site (16px is the browser default) */
+html {
+  font-size: 18px;
+}
 
 body {
-  font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  font-family: var(--font-mono), "Cascadia Code", "Cascadia Mono", Consolas, "SFMono-Regular", Menlo, monospace;
+  font-size: 1rem;
+  line-height: 1.7;
+  font-variant-ligatures: contextual;
 }
 
-:root{
-  --bg-900: #05060a;
-  --bg-800: #0b0e12;
-  --accent-500: #7c5cff;
-  --accent-400: #9b7bff;
-  --accent-2-500: #22d3c8;
-  --accent-2-400: #5eead4;
-  --muted: #9ca3af;
-  --card-border: rgba(255,255,255,0.07);
-  --card-border-hover: rgba(155,123,255,0.45);
-  --card-glow: 0 8px 30px rgba(124,92,255,0.12);
+/* Grey surround behind the white editor panel: faint engineering doodles (circuit traces, gears,
+   code brackets, ...), tiled like a chat-app wallpaper. Tile is generated, see public/images. */
+.outer-pattern {
+  background-color: var(--outer);
+  background-image: url('/images/engineering-pattern.svg');
+  background-size: 480px 480px;
 }
 
-/* Site background gradient + gradient-mesh blobs + subtle texture + grid */
-.site-gradient{
-  background-color: var(--bg-900);
-  /* layered background: vignette, soft color blobs (mesh), noise overlay, base gradient, thin grid lines */
-  background-image:
-    radial-gradient(circle at 10% 10%, rgba(255,255,255,0.02), transparent 30%),
-    radial-gradient(circle at 12% 18%, rgba(124,92,255,0.20), transparent 42%),
-    radial-gradient(circle at 88% 82%, rgba(34,211,200,0.16), transparent 42%),
-    url('/images/noise.svg'),
-    linear-gradient(180deg, rgba(11,14,18,1) 0%, rgba(5,6,10,1) 100%),
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 80px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 80px);
-  /* grid spacing for the repeating-linear-gradients */
-  background-size: auto, auto, auto, auto, auto, 80px 80px, 80px 80px;
-  background-position: center, center, center, center, center, 0 0, 0 0;
-  background-repeat: repeat;
-  color: #e6eef8;
+.site-gradient {
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
 }
 
-/* Card gradient used for hero/profile/project cards — glassmorphism: frosted, translucent, blurred backdrop */
-.card-gradient{
-  position: relative;
-  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border: 1px solid var(--card-border);
-  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
-  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+::selection {
+  background: #add6ff;
 }
 
-.card-gradient:hover{
-  border-color: var(--card-border-hover);
-  box-shadow: var(--card-glow), 0 10px 24px rgba(2,6,23,0.65);
+/* Hero line that is the largest contentful paint */
+.lcp-critical {
+  font-size: clamp(1.125rem, 1vw + 1rem, 1.5rem);
+  line-height: 1.4;
+  font-weight: 500;
+  max-width: 48rem;
+  margin-bottom: 1rem;
 }
 
-/* Small glass-style badge/tag used for skills, hero badges, tech pills */
-.pill{
+/*
+  Name block: fills the space beside the photo. The box takes the photo's height
+  and the leftover width; the font size is the largest that fits both, using the
+  box's own size (cqw/cqh). "SHAAR" is 5 glyphs of about 0.59em each.
+*/
+.name-box {
+  container-type: size;
+  flex: 1 1 0;
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.name-fill {
+  font-size: 3.5rem; /* fallback when container units are unsupported */
+  font-size: min(calc(100cqw / 3.05), calc(100cqh / 2.15));
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Editor line numbers (decorative; hidden from assistive tech in the layout) */
+.ide-gutter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3.25rem;
+  overflow: hidden;
+  padding: 1rem 0.9rem 0 0;
+  text-align: right;
+  white-space: pre;
+  user-select: none;
+  color: var(--gutter);
+  background: var(--gutter-bg);
+  font-size: 0.85rem;
+  line-height: calc(1rem * 1.7);
+  border-right: 1px solid var(--line);
+}
+
+/* Bottom status bar, like the one in the editor */
+.status-bar {
+  background: var(--status);
+  color: #ffffff;
+  font-size: 0.75rem;
+}
+.status-bar a:hover {
+  text-decoration: underline;
+}
+
+/* Panels used for project cards */
+.card-gradient {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+.card-gradient:hover {
+  background: #ffffff;
+  border-color: var(--status);
+}
+
+.pill {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255,255,255,0.08);
-  color: #e5e7eb;
-  transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
-}
-
-.pill:hover{
-  border-color: var(--card-border-hover);
-  transform: translateY(-1px);
-  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+  background: #eeeeee;
+  border: 1px solid var(--line);
+  color: var(--text);
 }
 
 .muted { color: var(--muted); }
 
 /* Accessibility: visible focus states for keyboard users */
 :focus-visible {
-  outline: 2px solid rgba(124,92,255,0.95);
-  outline-offset: 2px;
-  border-radius: 6px;
-}
-
-/* Apply clearer focus to common interactive controls */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible,
-[role="button"]:focus-visible {
   outline: 2px solid var(--accent-400);
   outline-offset: 2px;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
-/* Improve contrast for small captions that use Tailwind's text-xs + text-gray-400 */
+/* Small captions: keep enough contrast on white */
 body .text-xs.text-gray-400 {
-  color: #c0c6cc; /* slightly lighter to meet WCAG AA for small text on dark background */
+  color: #595959;
+}
+
+/* Page enter: one short fade and rise, starts hidden from the very first paint so it can't flash */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.page-enter {
+  animation: page-enter 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  /* Disable non-essential animations and transitions for users who opt out */
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;

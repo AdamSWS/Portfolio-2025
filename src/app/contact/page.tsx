@@ -17,7 +17,7 @@ export default function ContactPage() {
   // Contact form submission is handled inside `ContactForm` component.
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-20">
+    <main className="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
       {/* Server-side metadata exported via `metadata` */}
       <Reveal>
         <header className="mb-6">

@@ -50,23 +50,23 @@ export default function ContactForm() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label className="flex flex-col">
             <span className="text-sm text-gray-300">Name</span>
-            <input value={name} onChange={(e)=>setName(e.target.value)} className="mt-1 p-2 rounded-md bg-white/[0.02] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[var(--accent-400)] focus:border-transparent transition-colors" />
+            <input value={name} onChange={(e)=>setName(e.target.value)} className="mt-1 p-2 rounded-md bg-white border border-[var(--line)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-400)] focus:border-transparent transition-colors" />
           </label>
 
           <label className="flex flex-col">
             <span className="text-sm text-gray-300">Email</span>
-            <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" className="mt-1 p-2 rounded-md bg-white/[0.02] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[var(--accent-400)] focus:border-transparent transition-colors" />
+            <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" className="mt-1 p-2 rounded-md bg-white border border-[var(--line)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-400)] focus:border-transparent transition-colors" />
           </label>
         </div>
 
         <label className="flex flex-col">
           <span className="text-sm text-gray-300">Subject (optional)</span>
-          <input value={subject} onChange={(e)=>setSubject(e.target.value)} className="mt-1 p-2 rounded-md bg-white/[0.02] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[var(--accent-400)] focus:border-transparent transition-colors" />
+          <input value={subject} onChange={(e)=>setSubject(e.target.value)} className="mt-1 p-2 rounded-md bg-white border border-[var(--line)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-400)] focus:border-transparent transition-colors" />
         </label>
 
         <label className="flex flex-col">
           <span className="text-sm text-gray-300">Message</span>
-          <textarea value={message} onChange={(e)=>setMessage(e.target.value)} rows={6} className="mt-1 p-2 rounded-md bg-white/[0.02] border border-white/10 focus:outline-none focus:ring-2 focus:ring-[var(--accent-400)] focus:border-transparent transition-colors" />
+          <textarea value={message} onChange={(e)=>setMessage(e.target.value)} rows={6} className="mt-1 p-2 rounded-md bg-white border border-[var(--line)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-400)] focus:border-transparent transition-colors" />
         </label>
 
         {/* Honeypot field - visually hidden */}
@@ -76,7 +76,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={status==='sending'}
-            className="inline-flex items-center text-sm text-gray-900 bg-gray-100 px-4 py-2 rounded-full font-medium hover:bg-white hover:-translate-y-0.5 transition-all focus:ring-2 focus:ring-[var(--accent-400)] disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
+            className="inline-flex items-center text-sm text-white bg-[var(--accent)] px-4 py-2 rounded-full font-medium hover:bg-[var(--status)] transition-all focus:ring-2 focus:ring-[var(--accent-400)] disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
           >
             {status === 'sending' ? 'Sending...' : 'Send message'}
           </button>

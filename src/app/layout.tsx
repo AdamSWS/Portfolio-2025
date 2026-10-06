@@ -1,22 +1,26 @@
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Nav from "../components/Nav/Nav";
 import AnalyticsOptIn from "../components/Analytics/AnalyticsOptIn";
-import Reveal from "../components/ui/Reveal";
 import PageTransition from "../components/ui/PageTransition";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+// Cascadia Code (SIL OFL 1.1, see ./fonts/CascadiaCode-OFL.txt), self-hosted variable font
+const mono = localFont({
+  src: "./fonts/CascadiaCode-Variable.woff2",
+  variable: "--font-mono",
+  weight: "200 700",
   display: "swap",
 });
 
+// Decorative editor line numbers
+const GUTTER = Array.from({ length: 400 }, (_, i) => i + 1).join("\n");
+
 export const metadata = {
   title: "Adam Shaar — Portfolio",
-  description: "Adam Shaar — machine learning engineer; portfolio of projects, downloads, and contact for recruiters.",
+  description: "Adam Shaar — AI engineer. Projects, resume, and contact.",
   openGraph: {
     title: "Adam Shaar — Portfolio",
-    description: "Machine learning & product engineering. Featured projects, downloads, and contact.",
+    description: "AI engineer. Projects, resume, and contact.",
     type: "website",
     images: [{ url: "https://ashaar.me/images/og.png", width: 1200, height: 630 }],
   },
@@ -39,20 +43,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="icon" href="/favicon.svg" />
         {/* removed theme-color (browser compatibility lint); prefer `color-scheme` or CSS-based theming */}
-        {/* Inline minimal critical CSS for the hero LCP paragraph to avoid waiting for full CSS */}
-        <style dangerouslySetInnerHTML={{ __html: `
-          .lcp-critical {
-            font-size: clamp(1.125rem, 1.5vw + 1rem, 1.75rem);
-            line-height: 1.35;
-            font-weight: 500;
-            color: #e6eef8;
-            max-width: 48rem;
-            margin-bottom: 1.25rem;
-            -webkit-font-smoothing: antialiased;
-          }
-          /* small critical background tweaks for immediate paint */
-          .site-gradient { background-color: #05060a; }
-        ` }} />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -62,80 +52,40 @@ export default function RootLayout({
               "url": "https://ashaar.me/",
               "sameAs": [
                 "https://github.com/AdamSWS",
-                "https://www.linkedin.com/in/adam-s-491036232/",
-                "https://app.joinhandshake.com/profiles/wyrh5a"
-              ],
-              "jobTitle": "Machine Learning Engineer",
-              "description": "Machine learning and product engineering — projects, downloads, and contact for recruiters."
-            }) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Adam Shaar",
-              "url": "https://ashaar.me/",
-              "logo": "https://ashaar.me/favicon.svg",
-              "contactPoint": [{
-                "@type": "ContactPoint",
-                "telephone": "+1-000-000-0000",
-                "contactType": "Recruiting",
-                "areaServed": "US",
-                "availableLanguage": ["English"]
-              }]
-            }) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "Adam Shaar — Portfolio",
-              "url": "https://ashaar.me/",
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://ashaar.me/search?q={search_term_string}",
-                "query-input": "required name=search_term_string"
-              }
+                "https://www.linkedin.com/in/adam-s-491036232/"
+              ]
             }) }}
           />
       </head>
-      <body className={`${inter.variable} antialiased site-gradient`}>
+      <body className={`${mono.variable} antialiased site-gradient`}>
         <div className="min-h-screen flex flex-col">
-          <a href="#main" className="sr-only focus:not-sr-only z-50 inline-block p-2 bg-indigo-600 text-white rounded">Skip to content</a>
+          <a href="#main" className="sr-only focus:not-sr-only z-50 inline-block p-2 bg-[var(--accent)] text-white rounded">Skip to content</a>
           <Nav />
-          <main id="main" className="flex-1 overflow-auto">
-            <PageTransition>{children}</PageTransition>
-          </main>
+          <div id="main" className="flex-1 flex justify-center outer-pattern">
+            {/* White "editor" panel on a grey surround, like an editor window */}
+            <div className="relative w-full max-w-4xl bg-white md:border-x border-[var(--line)]">
+              <div aria-hidden="true" className="ide-gutter hidden md:block">{GUTTER}</div>
+              <div className="md:pl-14">
+                <PageTransition>{children}</PageTransition>
+              </div>
+            </div>
+          </div>
 
-          <footer className="w-full border-t border-white/5 bg-transparent">
-            <Reveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6 flex items-center justify-between text-sm text-gray-400">
-              <div>© {new Date().getFullYear()} Adam — Built with Next.js</div>
+          <footer className="status-bar sticky bottom-0 z-40">
+            <div className="flex items-center justify-between gap-4 px-3 h-6 whitespace-nowrap overflow-hidden">
               <div className="flex items-center gap-4">
-                <a href="https://github.com/AdamSWS" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white" aria-label="GitHub">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true"><path d="M12 .5C5.73.5.75 5.48.75 11.76c0 4.93 3.19 9.1 7.61 10.57.56.1.77-.24.77-.53 0-.26-.01-.96-.01-1.88-3.09.67-3.75-1.49-3.75-1.49-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.73 1.17 1.73 1.17 1 .17.7 1.66.7 1.66.9 1.54 2.35 1.1 2.92.84.09-.66.39-1.1.71-1.35-2.47-.28-5.06-1.24-5.06-5.51 0-1.22.44-2.21 1.16-2.99-.12-.29-.5-1.45.11-3.02 0 0 .95-.31 3.12 1.15.9-.25 1.86-.37 2.82-.37.96 0 1.92.12 2.82.37 2.17-1.46 3.12-1.15 3.12-1.15.61 1.57.23 2.73.11 3.02.72.78 1.16 1.77 1.16 2.99 0 4.28-2.6 5.23-5.08 5.51.4.34.76 1.01.76 2.03 0 1.47-.01 2.66-.01 3.02 0 .29.21.64.78.53 4.42-1.48 7.6-5.65 7.6-10.58C23.25 5.48 18.27.5 12 .5z"/></svg>
-                  <span className="hidden sm:inline">GitHub</span>
-                </a>
-
-                <a href="https://app.joinhandshake.com/profiles/wyrh5a" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white" aria-label="Handshake">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
-                    <rect x="4" y="4" width="2" height="16" />
-                    <rect x="18" y="4" width="2" height="16" />
-                    <rect x="6" y="11" width="12" height="2" />
-                  </svg>
-                  <span className="hidden sm:inline">Handshake</span>
-                </a>
-
-                <a href="https://www.linkedin.com/in/adam-s-491036232/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white" aria-label="LinkedIn">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.036-1.85-3.036-1.852 0-2.135 1.446-2.135 2.942v5.663H9.351V9h3.414v1.561h.049c.476-.9 1.636-1.85 3.369-1.85 3.603 0 4.27 2.372 4.27 5.456v6.285zM5.337 7.433c-1.144 0-2.07-.928-2.07-2.071 0-1.144.926-2.07 2.07-2.07 1.144 0 2.071.926 2.071 2.07 0 1.143-.927 2.071-2.071 2.071zM6.868 20.452H3.806V9h3.062v11.452z"/></svg>
-                  <span className="hidden sm:inline">LinkedIn</span>
-                </a>
-
-                <a href="/downloads/adam_shaar_softres.pdf" download className="hover:text-white" aria-label="Download resume">Resume</a>
+                <span>main</span>
+                <span className="hidden sm:inline">© {new Date().getFullYear()} Adam Shaar</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <a href="https://github.com/AdamSWS" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/adam-s-491036232/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="/downloads/adam_shaar_softres.pdf">Resume</a>
+                <span className="hidden sm:inline">UTF-8</span>
+                <span className="hidden md:inline">TypeScript React</span>
                 <AnalyticsOptIn />
               </div>
-            </Reveal>
+            </div>
           </footer>
         </div>
       </body>

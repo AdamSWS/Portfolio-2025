@@ -35,13 +35,13 @@ export default function AnalyticsOptIn() {
   }, [enabled])
 
   return (
-    <div className="ml-4">
-      <label className="inline-flex items-center gap-2 text-sm text-gray-300">
+    <div>
+      <label className="inline-flex items-center gap-2 text-white">
         <input
           type="checkbox"
           checked={enabled}
           onChange={(e) => setEnabled(e.target.checked)}
-          className="w-4 h-4 rounded bg-gray-700 border-gray-600 focus:ring-2 focus:ring-indigo-500"
+          className="w-3 h-3"
           aria-label="Enable analytics"
         />
         <span className="text-xs">Enable analytics</span>
