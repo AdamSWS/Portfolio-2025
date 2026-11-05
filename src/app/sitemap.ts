@@ -11,5 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/projects/fisherai`, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${siteUrl}/projects/vibeai`, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${siteUrl}/contact`, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${siteUrl}/privacy`, changeFrequency: 'yearly', priority: 0.2 },
+    { url: `${siteUrl}/terms`, changeFrequency: 'yearly', priority: 0.2 },
   ]
 }
